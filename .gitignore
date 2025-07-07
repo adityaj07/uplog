@@ -1,0 +1,27 @@
+node_modules
+.turbo
+
+# Build outputs
+dist/
+*.tsbuildinfo
+
+# Dependencies
+node_modules/
+
+# Environment files
+.env*
+!.env.example
+
+# Database files
+*.db
+*.sqlite
+
+# Docker
+.docker/
+
+# Local development
+.dev.vars
+
+/types/env.d.ts
+
+worker-configuration.d.ts

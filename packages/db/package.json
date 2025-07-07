@@ -1,0 +1,40 @@
+{
+  "name": "@convo/db",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./schema": {
+      "types": "./dist/schema/index.d.ts",
+      "import": "./dist/schema/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "check-types": "tsc --noEmit",
+    "debug-env": "node scripts/debug-env.js",
+    "db:push": "dotenv -e ../../.env -- drizzle-kit push --config=./src/drizzle.config.ts",
+    "db:studio": "dotenv -e ../../.env -- drizzle-kit studio --config=./src/drizzle.config.ts",
+    "db:generate": "dotenv -e ../../.env -- drizzle-kit generate --config=./src/drizzle.config.ts",
+    "db:migrate": "dotenv -e ../../.env -- drizzle-kit migrate --config=./src/drizzle.config.ts"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.1",
+    "drizzle-orm": "^0.44.2",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.4",
+    "@types/pg": "^8.15.4",
+    "dotenv": "^16.6.1",
+    "dotenv-cli": "^7.4.4",
+    "drizzle-kit": "^0.31.2",
+    "typescript": "^5.8.2"
+  }
+}
