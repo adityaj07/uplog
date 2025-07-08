@@ -1,0 +1,108 @@
+[4.0K]  .
+├── [4.0K]  apps
+│   ├── [4.0K]  server
+│   │   ├── [4.0K]  src
+│   │   │   ├── [4.0K]  db
+│   │   │   │   └── [ 681]  index.ts
+│   │   │   ├── [4.0K]  lib
+│   │   │   │   ├── [ 484]  auth.ts
+│   │   │   │   └── [1015]  env.ts
+│   │   │   ├── [4.0K]  routers
+│   │   │   │   └── [  71]  index.ts
+│   │   │   ├── [ 309]  ctx.ts
+│   │   │   └── [ 755]  index.ts
+│   │   ├── [ 777]  package.json
+│   │   ├── [ 491]  tsconfig.json
+│   │   ├── [282K]  worker-configuration.d.ts
+│   │   └── [ 421]  wrangler.jsonc
+│   └── [4.0K]  web
+│       ├── [4.0K]  src
+│       │   ├── [4.0K]  app
+│       │   │   ├── [4.0K]  dashboard
+│       │   │   ├── [4.0K]  login
+│       │   │   ├── [ 15K]  apple-icon.png
+│       │   │   ├── [ 15K]  favicon.ico
+│       │   │   ├── [188K]  icon0.svg
+│       │   │   ├── [3.2K]  icon1.png
+│       │   │   ├── [1.1K]  layout.tsx
+│       │   │   ├── [ 431]  manifest.json
+│       │   │   └── [ 388]  page.tsx
+│       │   ├── [4.0K]  components
+│       │   │   ├── [4.0K]  ui
+│       │   │   ├── [ 758]  header.tsx
+│       │   │   ├── [ 215]  loader.tsx
+│       │   │   ├── [1.2K]  mode-toggle.tsx
+│       │   │   ├── [ 404]  providers.tsx
+│       │   │   ├── [3.7K]  sign-in-form.tsx
+│       │   │   ├── [4.5K]  sign-up-form.tsx
+│       │   │   ├── [ 295]  theme-provider.tsx
+│       │   │   └── [1.6K]  user-menu.tsx
+│       │   ├── [4.0K]  lib
+│       │   │   ├── [ 157]  auth-client.ts
+│       │   │   └── [ 166]  utils.ts
+│       │   └── [7.0K]  index.css
+│       ├── [281K]  cloudflare-env.d.ts
+│       ├── [ 426]  components.json
+│       ├── [ 104]  next.config.ts
+│       ├── [ 211]  next-env.d.ts
+│       ├── [ 268]  open-next.config.ts
+│       ├── [1.4K]  package.json
+│       ├── [  81]  postcss.config.mjs
+│       ├── [ 802]  tsconfig.json
+│       └── [ 714]  wrangler.jsonc
+├── [4.0K]  packages
+│   ├── [4.0K]  db
+│   │   ├── [4.0K]  migrations
+│   │   │   ├── [4.0K]  meta
+│   │   │   │   ├── [ 40K]  0000_snapshot.json
+│   │   │   │   └── [ 208]  _journal.json
+│   │   │   └── [ 12K]  0000_normal_tempest.sql
+│   │   ├── [4.0K]  src
+│   │   │   ├── [4.0K]  schema
+│   │   │   │   ├── [1.8K]  auth.ts
+│   │   │   │   ├── [1.7K]  changelog.ts
+│   │   │   │   ├── [ 770]  common.ts
+│   │   │   │   ├── [1006]  company.ts
+│   │   │   │   ├── [1.4K]  contributors.ts
+│   │   │   │   ├── [ 218]  index.ts
+│   │   │   │   ├── [1.2K]  members.ts
+│   │   │   │   ├── [1.7K]  reactions.ts
+│   │   │   │   └── [1.5K]  tags.ts
+│   │   │   ├── [1.1K]  drizzle.config.ts
+│   │   │   ├── [ 775]  index.ts
+│   │   │   └── [ 101]  types.ts
+│   │   ├── [1.2K]  package.json
+│   │   ├── [ 343]  tsconfig.json
+│   │   └── [135K]  tsconfig.tsbuildinfo
+│   ├── [4.0K]  schemas
+│   │   ├── [4.0K]  src
+│   │   │   ├── [4.0K]  auth
+│   │   │   │   ├── [  25]  index.ts
+│   │   │   │   └── [ 365]  login.ts
+│   │   │   └── [  24]  index.ts
+│   │   ├── [ 900]  package.json
+│   │   ├── [ 344]  tsconfig.json
+│   │   └── [ 42K]  tsconfig.tsbuildinfo
+│   └── [4.0K]  types
+│       ├── [4.0K]  src
+│       │   ├── [4.0K]  auth
+│       │   │   └── [ 141]  index.ts
+│       │   └── [  24]  index.ts
+│       ├── [ 856]  package.json
+│       ├── [ 344]  tsconfig.json
+│       └── [ 42K]  tsconfig.tsbuildinfo
+├── [4.0K]  scripts
+│   ├── [8.4K]  env-manager.ts
+│   ├── [2.7K]  generate-exports.ts
+│   └── [1.1K]  wait-for-db.ts
+├── [4.0K]  types
+│   └── [ 446]  env.d.ts
+├── [ 854]  docker-compose.yaml
+├── [1.7K]  package.json
+├── [343K]  pnpm-lock.yaml
+├── [  40]  pnpm-workspace.yaml
+├── [  96]  README.md
+├── [   0]  tree.txt
+└── [ 982]  turbo.json
+
+29 directories, 77 files

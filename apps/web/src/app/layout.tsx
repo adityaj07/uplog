@@ -1,4 +1,3 @@
-import Header from "@/components/header";
 import Providers from "@/components/providers";
 import type { Metadata } from "next";
 import { Outfit, Space_Mono } from "next/font/google";
@@ -33,7 +32,7 @@ export default function RootLayout({
       >
         <Providers>
           <div className="grid grid-rows-[auto_1fr] h-svh">
-            <Header />
+            {/* <Header /> */}
             {children}
           </div>
         </Providers>

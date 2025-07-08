@@ -1,5 +1,5 @@
 import { boolean, index, text, timestamp } from "drizzle-orm/pg-core";
-import { baseColumns, createTable } from "./common";
+import { baseColumns, createTable, onboardingStatusEnum } from "./common";
 import { nanoid } from "nanoid";
 
 // Auth tables
@@ -9,8 +9,11 @@ export const user = createTable("user", {
     .$defaultFn(() => nanoid()),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
-  emailVerified: boolean("email_verified").notNull(),
+  emailVerified: boolean("email_verified").notNull().default(false),
   image: text("image"),
+  onboardingStatus: onboardingStatusEnum("onboardingStatus")
+    .default("PENDING")
+    .notNull(),
   ...baseColumns,
 });
 

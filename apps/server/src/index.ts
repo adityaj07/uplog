@@ -1,10 +1,12 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
+import type { HonoContext } from "./ctx";
 import { auth } from "./lib/auth";
 import { env } from "./lib/env";
+import { indexRouter } from "./routers";
 
-const app = new Hono();
+const app = new Hono<HonoContext>();
 
 app.use(logger());
 app.use(
@@ -26,9 +28,11 @@ app.get("/", (c) => {
 app.get("/health", (c) => {
   return c.json({
     status: "ok",
-    environment: env.NODE_ENV,
+    environment: env.CORS_ORIGIN,
     timestamp: new Date().toISOString(),
   });
 });
+
+app.route("/api/v1", indexRouter);
 
 export default app;

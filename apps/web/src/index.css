@@ -10,7 +10,7 @@
 
 /* html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply bg-white dark:bg-[#141820];
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
@@ -24,7 +24,7 @@ body {
   --card-foreground: oklch(0.2046 0 0);
   --popover: oklch(0.9911 0 0);
   --popover-foreground: oklch(0.4386 0 0);
-  --primary: oklch(0.6926 0.2017 37.683);
+  --primary: #ff622e;
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.994 0 0);
   --secondary-foreground: oklch(0.2046 0 0);
@@ -185,6 +185,11 @@ body {
 
 body {
   letter-spacing: var(--tracking-normal);
+  @apply bg-white dark:bg-[#141820];
+
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+  }
 }
 
 @layer base {

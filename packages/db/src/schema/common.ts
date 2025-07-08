@@ -10,6 +10,12 @@ export const changelogStatusEnum = pgEnum("changelog_status", [
   "SCHEDULED",
   "ARCHIVED",
 ]);
+export const onboardingStatusEnum = pgEnum("onboarding_status", [
+  "PENDING", // signed up
+  "PROFILE_COMPLETED", // profile filled
+  "COMPANY_CREATED", // company created
+  "COMPLETED", // full onboarding done
+]);
 
 export const baseColumns = {
   createdAt: timestamp("created_at", { withTimezone: true })

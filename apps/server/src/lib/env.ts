@@ -13,4 +13,10 @@ export const env = {
   BETTER_AUTH_URL:
     process.env.BETTER_AUTH_URL || cloudflareEnv?.BETTER_AUTH_URL || "",
   REDIS_URL: process.env.REDIS_URL || cloudflareEnv?.REDIS_URL || "",
+  GOOGLE_CLIENT_ID:
+    process.env.GOOGLE_CLIENT_ID || cloudflareEnv?.GOOGLE_CLIENT_ID || "",
+  GOOGLE_CLIENT_SECRET:
+    process.env.GOOGLE_CLIENT_SECRET ||
+    cloudflareEnv?.GOOGLE_CLIENT_SECRET ||
+    "",
 };
