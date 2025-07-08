@@ -5,16 +5,28 @@ import { Button } from "@/components/ui/button";
 
 import { Icons } from "@/components/icons";
 import NeumorphWrapper from "@/components/neumorph-wrapper";
+import { googleSignIn } from "@/lib/auth-client";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "sonner";
 
 export default function AuthPage() {
   const router = useRouter();
+  const [isLoginLoading, setIsLoginLoading] = useState<boolean>(false);
 
-  const handleLogin = () => {
-    // Trigger Google Sign-in logic
-    router.push("/dashboard");
+  const handleLogin = async () => {
+    try {
+      setIsLoginLoading(true);
+      await googleSignIn();
+
+      router.push("/dashboard");
+    } catch (error) {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setIsLoginLoading(false);
+    }
   };
 
   return (
@@ -59,12 +71,12 @@ export default function AuthPage() {
         <div className="space-y-8 p-10 rounded-2xl border border-border/50 bg-card/95 backdrop-blur-sm shadow-2xl">
           <div className="text-center space-y-3">
             <motion.h1
-              className="text-4xl font-bold tracking-tight text-primary"
+              className="text-4xl font-bold tracking-tight text-white"
               initial={{ y: 15, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.2 }}
             >
-              Sign in to uplog
+              Sign in to <span className="text-primary">uplog</span>
             </motion.h1>
             <motion.p
               className="text-base text-muted-foreground/80"
@@ -87,7 +99,11 @@ export default function AuthPage() {
                 className="w-full flex items-center justify-center gap-3 h-12 text-base font-medium border-border/70 hover:bg-accent transition-all duration-200 cursor-pointer "
                 onClick={handleLogin}
               >
-                <Icons.googleIcon className="h-5 w-5" />
+                {isLoginLoading ? (
+                  "..."
+                ) : (
+                  <Icons.googleIcon className="h-5 w-5" />
+                )}
                 Continue with Google
               </Button>
             </NeumorphWrapper>
