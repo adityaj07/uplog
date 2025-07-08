@@ -15,7 +15,7 @@ async function waitForDatabase() {
       const result = await new Promise((resolve, reject) => {
         const child = spawn(
           "docker",
-          ["exec", "convo-postgres", "pg_isready", "-U", "postgres"],
+          ["exec", "uplog-postgres", "pg_isready", "-U", "postgres"],
           {
             stdio: "pipe",
           }

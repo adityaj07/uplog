@@ -3,9 +3,9 @@ version: "3.8"
 services:
   postgres:
     image: postgres:17
-    container_name: convo-postgres
+    container_name: uplog-postgres
     environment:
-      POSTGRES_DB: convo
+      POSTGRES_DB: uplog
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
     ports:
@@ -22,7 +22,7 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: convo-redis
+    container_name: uplog-redis
     ports:
       - "6379:6379"
     volumes:

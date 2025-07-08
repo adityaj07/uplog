@@ -1,5 +1,5 @@
 import { env } from "@/lib/env";
-import { createDatabase, type Database } from "@convo/db";
+import { createDatabase, type Database } from "@uplog/db";
 
 // Environment-based database URL selection
 function getDatabaseUrl(): string {

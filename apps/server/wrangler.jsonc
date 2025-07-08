@@ -1,5 +1,5 @@
 {
-  "name": "convo-server",
+  "name": "uplog-server",
   "main": "src/index.ts",
   "compatibility_date": "2025-06-15",
   "compatibility_flags": ["nodejs_compat"],
@@ -11,5 +11,4 @@
   // For sensitive data, use:
   // wrangler secret put SECRET_NAME
   // Don't add secrets to "vars" - they're visible in the dashboard!
-
-  }
+}

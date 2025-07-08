@@ -1,5 +1,5 @@
 {
-  "name": "convo",
+  "name": "uplog",
   "private": true,
   "workspaces": [
     "apps/*",
@@ -20,10 +20,10 @@
     "dev:force": "pnpm docker:clean && pnpm env:setup && pnpm docker:up && pnpm db:ready && turbo dev",
     "db:ready": "pnpm db:wait && pnpm db:push",
     "db:wait": "tsx scripts/wait-for-db.ts",
-    "db:push": "dotenv -e .env -- turbo -F @convo/db db:push",
-    "db:studio": "dotenv -e .env -- turbo -F @convo/db db:studio",
-    "db:generate": "dotenv -e .env -- turbo -F @convo/db db:generate",
-    "db:migrate": "dotenv -e .env -- turbo -F @convo/db db:migrate",
+    "db:push": "dotenv -e .env -- turbo -F @uplog/db db:push",
+    "db:studio": "dotenv -e .env -- turbo -F @uplog/db db:studio",
+    "db:generate": "dotenv -e .env -- turbo -F @uplog/db db:generate",
+    "db:migrate": "dotenv -e .env -- turbo -F @uplog/db db:migrate",
     "build": "turbo build",
     "check-types": "turbo check-types",
     "dev:web": "turbo -F web dev",

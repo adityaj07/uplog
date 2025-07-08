@@ -1,11 +1,8 @@
-import { env } from "./lib/env";
-import { auth } from "./lib/auth";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
-
-import { userLoginSchema } from "@convo/schemas/auth";
-import { type userLoginSchemaT } from "@convo/types";
+import { auth } from "./lib/auth";
+import { env } from "./lib/env";
 
 const app = new Hono();
 

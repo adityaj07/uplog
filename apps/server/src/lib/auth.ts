@@ -1,7 +1,7 @@
+import { db } from "@/db";
+import * as schema from "@uplog/db/schema";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { db } from "@/db";
-import * as schema from "@convo/db/schema";
 import { env } from "cloudflare:workers";
 
 export const auth = betterAuth({

@@ -1,6 +1,6 @@
-import { readFile, writeFile, access, mkdir } from "fs/promises";
-import { join, dirname } from "path";
 import { spawn } from "child_process";
+import { access, mkdir, readFile, writeFile } from "fs/promises";
+import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
 // ESM compatibility
@@ -112,11 +112,11 @@ async function setupEnvironment() {
       { key: "NODE_ENV", value: "development" },
       {
         key: "DATABASE_URL",
-        value: "postgresql://postgres:password@localhost:5432/convo",
+        value: "postgresql://postgres:password@localhost:5432/uplog",
       },
       {
         key: "DATABASE_URL_POOLER",
-        value: "postgresql://postgres:password@localhost:5432/convo",
+        value: "postgresql://postgres:password@localhost:5432/uplog",
       },
       { key: "CORS_ORIGIN", value: "http://localhost:3001" },
       {
@@ -276,4 +276,4 @@ export {};
 // Run the setup function
 setupEnvironment().catch(console.error);
 
-export { setupEnvironment, parseEnv };
+export { parseEnv, setupEnvironment };

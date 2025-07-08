@@ -1,22 +1,24 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "../index.css";
-import Providers from "@/components/providers";
 import Header from "@/components/header";
+import Providers from "@/components/providers";
+import type { Metadata } from "next";
+import { Outfit, Space_Mono } from "next/font/google";
+import "../index.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const outfitSans = Outfit({
+  variable: "--font-outfit-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spaceMono = Space_Mono({
+  variable: "--font-space-mono",
   subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "convo",
-  description: "convo",
+  title: "uplog",
+  description:
+    "Uplog is the modern changelog manager designed for SaaS founders and indie devs. Capture every feature release, bug fix, and improvement -> publish them on a beautifully designed public page.",
 };
 
 export default function RootLayout({
@@ -27,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${outfitSans.variable} ${spaceMono.variable} antialiased`}
       >
         <Providers>
           <div className="grid grid-rows-[auto_1fr] h-svh">

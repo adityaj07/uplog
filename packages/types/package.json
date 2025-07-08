@@ -1,5 +1,5 @@
 {
-  "name": "@convo/types",
+  "name": "@uplog/types",
   "version": "0.0.0",
   "type": "module",
   "main": "./dist/index.js",
@@ -10,7 +10,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@convo/schemas": "workspace:*",
+    "@uplog/schemas": "workspace:*",
     "drizzle-orm": "^0.44.2",
     "zod": "^3.25.67"
   },
