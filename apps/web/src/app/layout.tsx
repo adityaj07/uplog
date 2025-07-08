@@ -1,3 +1,4 @@
+import { HeroHeader } from "@/components/header";
 import Providers from "@/components/providers";
 import type { Metadata } from "next";
 import { Outfit, Space_Mono } from "next/font/google";
@@ -31,10 +32,7 @@ export default function RootLayout({
         className={`${outfitSans.variable} ${spaceMono.variable} antialiased`}
       >
         <Providers>
-          <div className="grid grid-rows-[auto_1fr] h-svh">
-            {/* <Header /> */}
-            {children}
-          </div>
+          <div className="grid grid-rows-[auto_1fr] h-svh">{children}</div>
         </Providers>
       </body>
     </html>

@@ -1,9 +1,11 @@
-import { type FC } from "react";
+"use client";
 
-interface pageProps {}
+import HeroSection from "@/components/hero-section";
 
-const page: FC<pageProps> = ({}) => {
-  return <div>page</div>;
-};
-
-export default page;
+export default function Home() {
+  return (
+    <div>
+      <HeroSection />
+    </div>
+  );
+}

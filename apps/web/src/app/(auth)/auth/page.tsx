@@ -19,7 +19,7 @@ export default function AuthPage() {
   return (
     <div className="relative flex min-h-screen items-center justify-center px-4 overflow-hidden">
       {/* 🌟 Large Cloud Blob Background */}
-      <motion.div
+      {/* <motion.div
         className="absolute inset-0 flex items-center justify-center"
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
@@ -40,7 +40,7 @@ export default function AuthPage() {
           animate={{ rotate: 0, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         />
-      </motion.div>
+      </motion.div> */}
 
       {/* 🌫️ Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/70 to-background/90 pointer-events-none z-[1]" />
