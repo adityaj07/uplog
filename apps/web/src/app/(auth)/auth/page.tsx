@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 import NeumorphWrapper from "@/components/neumorph-wrapper";
 import { motion } from "framer-motion";
+import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function AuthPage() {
@@ -114,6 +115,20 @@ export default function AuthPage() {
             </a>
             .
           </motion.p>
+          <motion.a
+            className="flex justify-center items-center text-center text-sm text-muted-foreground/50 leading-relaxed mt-2 mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4, delay: 0.5 }}
+            href="/"
+          >
+            <span className="flex items-center gap-1 hover:text-foreground transition-colors cursor-pointer">
+              <span className="inline-block transition-transform duration-200 ease-out group-hover:translate-x-1">
+                <ArrowLeft className="mr-2 h-4" />
+              </span>
+              Back
+            </span>
+          </motion.a>
         </div>
       </motion.div>
     </div>

@@ -70,7 +70,7 @@ export default function HeroSection() {
                 <div className="mx-auto max-w-sm relative h-full bg-[#ff622e] [box-shadow:0_0_10px_-1px_#00000050] border border-[#d94e1f] rounded-2xl overflow-hidden after:absolute after:inset-0 after:pointer-events-none after:content-[''] after:rounded-2xl after:border-t-[3px] after:border-r-[3px] after:border-t-[#ff8757] after:border-r-[#c9441a] after:hover:border-t-[#ff9d76] after:hover:border-r-transparent after:hover:[box-shadow:inset_0_4px_12px_#00000060] transition-all duration-200">
                   <Button
                     size="lg"
-                    className="w-full h-12 justify-center text-base font-semibold group"
+                    className="w-full h-12 justify-center text-base font-semibold group cursor-pointer"
                     onClick={() => {
                       window.location.href = "/auth";
                     }}
