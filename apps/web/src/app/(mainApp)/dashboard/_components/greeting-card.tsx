@@ -73,7 +73,7 @@ const GreetingCard: FC<GreetingCardProps> = ({ className }) => {
       />
 
       {/* Main Card */}
-      <div className="relative bg-muted/80 backdrop-blur-md border border-border rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
+      <div className="relative bg-white dark:bg-muted/80 backdrop-blur-md border border-border rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow duration-300">
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
           {/* Left Section */}
           <div className="space-y-3 flex-1">
