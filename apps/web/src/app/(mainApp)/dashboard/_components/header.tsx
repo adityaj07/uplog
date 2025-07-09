@@ -1,3 +1,4 @@
+import { ModeToggle } from "@/components/mode-toggle";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,7 +10,6 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { type FC } from "react";
-
 interface HeaderProps {
   companyName?: string;
   pageName?: string;
@@ -20,7 +20,8 @@ const Header: FC<HeaderProps> = ({
   pageName,
 }) => {
   return (
-    <header className="flex h-16 shrink-0 items-center gap-2">
+    <header className="flex h-16 shrink-0 items-center justify-between px-2 md:px-4">
+      {/* Left side: Sidebar + Breadcrumb */}
       <div className="flex items-center gap-2">
         <SidebarTrigger className="-ml-1" />
         <Separator
@@ -39,6 +40,9 @@ const Header: FC<HeaderProps> = ({
           </BreadcrumbList>
         </Breadcrumb>
       </div>
+
+      {/* Right side: Mode toggle */}
+      <ModeToggle />
     </header>
   );
 };

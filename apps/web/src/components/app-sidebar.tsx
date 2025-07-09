@@ -36,7 +36,6 @@ const data = {
       title: "Dashboard",
       url: "/dashboard",
       icon: LayoutDashboard,
-      isActive: true,
     },
     {
       title: "Changelogs",
@@ -56,7 +55,7 @@ const data = {
   ],
   teams: [
     {
-      name: "Acme Inc",
+      name: "Uplog HQ",
       logo: GalleryVerticalEnd,
       plan: "Enterprise",
     },
@@ -84,9 +83,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <div className="bg-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
                   <img src="/logo-bg-removed.png" className="" />
                 </div>
-                <div className="grid flex-1 text-left text-lg leading-tight text-white">
+                <div className="grid flex-1 text-left text-lg leading-tight dark:text-white ">
                   <span className="truncate font-medium">Uplog</span>
-                  {/* <span className="truncate text-xs">Enterprise</span> */}
                 </div>
               </a>
             </SidebarMenuButton>
@@ -99,11 +97,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
+
       <SidebarContent className="bg-accent">
         <NavMain items={data.navMain} />
-        {/* <NavProjects projects={data.projects} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
       </SidebarContent>
+
       <SidebarFooter className="bg-accent">
         <NavUser user={data.user} />
       </SidebarFooter>

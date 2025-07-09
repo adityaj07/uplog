@@ -1,6 +1,14 @@
+import NeumorphWrapper from "@/components/neumorph-wrapper";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import clsx from "clsx";
 import { LineChart } from "lucide-react";
 import { type FC } from "react";
 
@@ -10,20 +18,48 @@ interface AnalyticsCardProps {
     publicViews: number;
     publishedThisMonth: number;
     scheduled: number;
-    publishingVelocity: number;
-    contributorActivity: number;
+    reactions?: {
+      thumbsUp: number;
+      heart: number;
+      fire: number;
+    } | null;
   };
 }
 
 const AnalyticsCard: FC<AnalyticsCardProps> = ({ analyticsLogs }) => {
+  const totalReactions =
+    (analyticsLogs.reactions?.thumbsUp || 0) +
+    (analyticsLogs.reactions?.heart || 0) +
+    (analyticsLogs.reactions?.fire || 0);
+
+  const reactionItems = [
+    {
+      emoji: "👍",
+      count: analyticsLogs.reactions?.thumbsUp || 0,
+      label: "Thumbs Up",
+    },
+    {
+      emoji: "❤️",
+      count: analyticsLogs.reactions?.heart || 0,
+      label: "Hearts",
+    },
+    {
+      emoji: "🔥",
+      count: analyticsLogs.reactions?.fire || 0,
+      label: "Fire",
+    },
+  ];
+
   return (
     <div className="sticky top-4">
       <Card className="p-4 space-y-4">
+        {/* Header */}
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold">Analytics Overview</h3>
           <LineChart className="w-5 h-5 text-muted-foreground" />
         </div>
 
+        {/* Key Stats */}
         <div className="grid gap-3">
           <div className="flex justify-between">
             <p className="text-xs text-muted-foreground">Total Changelogs</p>
@@ -47,33 +83,44 @@ const AnalyticsCard: FC<AnalyticsCardProps> = ({ analyticsLogs }) => {
 
         <Separator />
 
+        {/* Reaction Panel */}
         <div className="space-y-2">
-          <div className="flex justify-between items-center">
-            <span className="text-sm font-medium">Publishing Velocity</span>
-            <span className="text-sm font-bold">
-              {analyticsLogs.publishingVelocity}%
-            </span>
-          </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
-            <div
-              className="bg-primary h-2 rounded-full"
-              style={{ width: `${analyticsLogs.publishingVelocity}%` }}
-            />
-          </div>
-          <div className="flex justify-between items-center">
-            <span className="text-sm font-medium">Contributor Activity</span>
-            <span className="text-sm font-bold">
-              {analyticsLogs.contributorActivity}%
-            </span>
-          </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
-            <div
-              className="bg-primary h-2 rounded-full"
-              style={{ width: `${analyticsLogs.contributorActivity}%` }}
-            />
-          </div>
+          <h4 className="text-sm font-medium text-muted-foreground">
+            Changelog Reactions
+          </h4>
+
+          {totalReactions === 0 ? (
+            <div className="text-sm text-muted-foreground text-center py-4">
+              No reactions yet. Make your changelogs more engaging ✨
+            </div>
+          ) : (
+            <TooltipProvider>
+              <NeumorphWrapper className="flex flex-row justify-around items-center rounded-md after:rounded-lg mx-auto max-w-sm relative h-full bg-[#ff622e] [box-shadow:0_0_10px_-1px_#00000050] border border-[#d94e1f]  overflow-hidden after:absolute after:inset-0 after:pointer-events-none after:content-['']  after:border-t-[3px] after:border-r-[3px] after:border-t-[#ff8757] after:border-r-[#c9441a] after:hover:border-t-[#ff9d76] after:hover:border-r-transparent after:hover:[box-shadow:inset_0_4px_12px_#00000060] transition-all duration-200 p-2 mt-4">
+                {reactionItems.map((reaction, idx) => (
+                  <Tooltip key={idx}>
+                    <TooltipTrigger asChild>
+                      <div
+                        className={clsx(
+                          "flex flex-col items-center justify-center gap-0.5 px-3 py-1 rounded-md hover:bg-white/10 transition duration-150 cursor-default"
+                        )}
+                      >
+                        <div className="text-xl">{reaction.emoji}</div>
+                        <span className="text-xs font-medium">
+                          {reaction.count}
+                        </span>
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" className="text-xs">
+                      {reaction.label}
+                    </TooltipContent>
+                  </Tooltip>
+                ))}
+              </NeumorphWrapper>
+            </TooltipProvider>
+          )}
         </div>
 
+        {/* CTA */}
         <Button variant="outline" className="w-full text-sm">
           View detailed analytics
         </Button>

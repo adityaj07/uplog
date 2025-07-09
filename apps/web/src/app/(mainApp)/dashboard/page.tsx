@@ -12,12 +12,18 @@ import UpcomingChangelogs from "./_components/upcoming-changlogs-card";
 const mockChangelogs = [
   {
     id: 1,
-    title: "Dark Mode Support",
-    description: "Users can now toggle dark/light themes",
+    title: "New Dashboard Analytics",
+    description: "Enhanced analytics with real-time data visualization",
     date: "2 hours ago",
     type: "feature",
-    version: "v1.3.0",
+    version: "v2.1.0",
+    reactions: {
+      thumbsUp: 12,
+      heart: 5,
+      fire: 8,
+    },
   },
+
   {
     id: 2,
     title: "Branding Customization Fix",
@@ -28,6 +34,22 @@ const mockChangelogs = [
   },
   {
     id: 3,
+    title: "Faster Publish Flow",
+    description: "Improved changelog publish experience",
+    date: "3 days ago",
+    type: "improvement",
+    version: "v1.2.4",
+  },
+  {
+    id: 4,
+    title: "Faster Publish Flow",
+    description: "Improved changelog publish experience",
+    date: "3 days ago",
+    type: "improvement",
+    version: "v1.2.4",
+  },
+  {
+    id: 5,
     title: "Faster Publish Flow",
     description: "Improved changelog publish experience",
     date: "3 days ago",
@@ -98,6 +120,11 @@ const mockAnalytics = {
   scheduled: 5,
   publishingVelocity: 80,
   contributorActivity: 92,
+  reactions: {
+    thumbsUp: 12,
+    heart: 5,
+    fire: 8,
+  },
 };
 
 interface pageProps {}
