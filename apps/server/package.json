@@ -1,11 +1,11 @@
 {
-  "name": "server",
+  "name": "@uplog/server",
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
     "build": "wrangler deploy --dry-run",
     "check-types": "tsc --noEmit",
-    "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
+    "compile": "pnpm build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
     "dev": "wrangler dev --port=8787",
     "start": "wrangler dev",
     "deploy": "wrangler deploy",

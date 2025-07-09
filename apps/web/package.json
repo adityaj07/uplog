@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "@uplog/web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -27,9 +27,11 @@
     "@uplog/db": "workspace:*",
     "@uplog/schemas": "workspace:*",
     "@uplog/types": "workspace:*",
+    "@uplog/server": "workspace:*",
     "better-auth": "^1.2.10",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "framer-motion": "^12.23.0",
     "lucide-react": "^0.487.0",
     "motion": "^12.23.0",

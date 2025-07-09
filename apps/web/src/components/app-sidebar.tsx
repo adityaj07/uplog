@@ -22,6 +22,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import NeumorphWrapper from "./neumorph-wrapper";
 import { TeamSwitcher } from "./team-switcher";
 import { Separator } from "./ui/separator";
 
@@ -79,14 +80,19 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <a href="#">
-                <div className="bg-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                  <img src="/logo-bg-removed.png" className="" />
-                </div>
-                <div className="grid flex-1 text-left text-lg leading-tight dark:text-white ">
-                  <span className="truncate font-medium">Uplog</span>
-                </div>
-              </a>
+              <NeumorphWrapper className=" rounded-md after:rounded-lg">
+                <a
+                  href="#"
+                  className="flex flex-row justify-center items-center gap-2"
+                >
+                  <div className="bg-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+                    <img src="/logo-bg-removed.png" />
+                  </div>
+                  <div className="grid flex-1 text-left text-lg leading-tight dark:text-white ">
+                    <span className="truncate font-medium">Uplog</span>
+                  </div>
+                </a>
+              </NeumorphWrapper>
             </SidebarMenuButton>
           </SidebarMenuItem>
 

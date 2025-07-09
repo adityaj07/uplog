@@ -1,6 +1,8 @@
 import { env } from "@/lib/env";
 import { createDatabase, type Database } from "@uplog/db";
 
+console.log("Database URL from db:", env.DATABASE_URL ? "Set" : "Missing");
+
 // Environment-based database URL selection
 function getDatabaseUrl(): string {
   if (env.NODE_ENV === "production") {

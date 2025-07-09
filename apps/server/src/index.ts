@@ -1,10 +1,10 @@
+import { env } from "cloudflare:workers";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import type { HonoContext } from "./ctx";
 import { auth } from "./lib/auth";
 import { indexRouter } from "./routers";
-import { env } from "cloudflare:workers";
 
 const app = new Hono<HonoContext>();
 
@@ -33,10 +33,14 @@ app.use("*", async (c, next) => {
   return next();
 });
 
-app.on(["POST", "GET"], "/api/auth/**", (c) => auth.handler(c.req.raw));
-
-app.get("/", (c) => {
-  return c.text("OK");
+app.on(["POST", "GET"], "/api/auth/**", async (c) => {
+  try {
+    console.log("Auth request:", c.req.url);
+    return await auth.handler(c.req.raw);
+  } catch (error) {
+    console.error("Auth error:", error);
+    return c.json({ error: "Auth failed" }, 500);
+  }
 });
 
 app.get("/health", (c) => {
