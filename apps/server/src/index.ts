@@ -36,10 +36,13 @@ app.use("*", async (c, next) => {
 app.on(["POST", "GET"], "/api/auth/**", async (c) => {
   try {
     console.log("Auth request:", c.req.url);
-    return await auth.handler(c.req.raw);
+    return (await auth.handler(c.req.raw)) as Response;
   } catch (error) {
     console.error("Auth error:", error);
-    return c.json({ error: "Auth failed" }, 500);
+    return c.json(
+      { error: "Auth failed", message: (error as Error).message },
+      500
+    );
   }
 });
 

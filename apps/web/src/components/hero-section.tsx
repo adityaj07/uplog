@@ -1,6 +1,12 @@
 import { TextEffect } from "@/components/motion-primitives/text-effect";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  Construction,
+  ConstructionIcon,
+  Sparkles,
+} from "lucide-react";
+import Link from "next/link";
 import { AnimatedGroup } from "./motion-primitives/animated-group";
 
 const transitionVariants = {
@@ -36,7 +42,29 @@ export default function HeroSection() {
           /> */}
           {/* Overlay */}
           {/* <div className="absolute inset-0 bg-black/60" /> */}
-          <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-32 lg:pt-48">
+          <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-32 lg:pt-36">
+            <AnimatedGroup variants={transitionVariants} className="mb-10">
+              <Link
+                href="#link"
+                className="hover:bg-background dark:hover:border-t-border bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950"
+              >
+                <span className="text-foreground text-sm">
+                  This site is currently work in progress
+                </span>
+                <span className="dark:border-background block h-4 w-0.5 border-l bg-white dark:bg-zinc-700"></span>
+
+                <div className="bg-background group-hover:bg-muted size-6 overflow-hidden rounded-full duration-500">
+                  <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
+                    <span className="flex size-6">
+                      <ConstructionIcon className="m-auto size-3" />
+                    </span>
+                    <span className="flex size-6">
+                      <Construction className="m-auto size-3" />
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </AnimatedGroup>
             <div className="relative z-10 mx-auto max-w-4xl text-center">
               <TextEffect
                 preset="fade-in-blur"
@@ -125,53 +153,72 @@ export default function HeroSection() {
 const AppComponent = () => {
   return (
     <div className="relative space-y-3 rounded-[1rem] bg-white/5 p-4">
-      <div className="flex items-center gap-1.5 text-orange-400">
+      <div className="flex items-center gap-1.5 text-sky-400">
         <svg
           className="size-5"
           xmlns="http://www.w3.org/2000/svg"
-          width="1em"
-          height="1em"
-          viewBox="0 0 32 32"
+          viewBox="0 0 24 24"
         >
-          <g fill="none">
-            <path
-              fill="#ff6723"
-              d="M26 19.34c0 6.1-5.05 11.005-11.15 10.641c-6.269-.374-10.56-6.403-9.752-12.705c.489-3.833 2.286-7.12 4.242-9.67c.34-.445.689 3.136 1.038 2.742c.35-.405 3.594-6.019 4.722-7.991a.694.694 0 0 1 1.028-.213C18.394 3.854 26 10.277 26 19.34"
-            ></path>
-            <path
-              fill="#ffb02e"
-              d="M23 21.851c0 4.042-3.519 7.291-7.799 7.144c-4.62-.156-7.788-4.384-7.11-8.739C9.07 14.012 15.48 10 15.48 10S23 14.707 23 21.851"
-            ></path>
-          </g>
+          <path
+            fill="currentColor"
+            d="M4 4v16h16V4H4Zm2 2h12v12H6V6Zm2 2v2h8V8H8Zm0 4v2h5v-2H8Z"
+          />
         </svg>
-        <div className="text-sm font-medium">Steps</div>
+        <div className="text-sm font-medium">Product Updates</div>
       </div>
       <div className="space-y-3">
         <div className="text-foreground border-b border-white/10 pb-3 text-sm font-medium">
-          This year, you're walking more on average than you did in 2023.
+          Your team has published more changelog updates this year than last
+          year.
         </div>
         <div className="space-y-3">
           <div className="space-y-1">
             <div className="space-x-1">
               <span className="text-foreground align-baseline text-xl font-medium">
-                8,081
+                36
               </span>
-              <span className="text-muted-foreground text-xs">Steps/day</span>
+              <span className="text-muted-foreground text-xs">
+                Updates/month
+              </span>
             </div>
-            <div className="flex h-5 items-center rounded bg-gradient-to-l from-emerald-400 to-indigo-600 px-2 text-xs text-white">
-              2024
+            <div className="flex h-5 items-center rounded bg-gradient-to-l from-sky-400 to-blue-600 px-2 text-xs text-white">
+              2025
             </div>
           </div>
           <div className="space-y-1">
             <div className="space-x-1">
               <span className="text-foreground align-baseline text-xl font-medium">
-                5,412
+                18
               </span>
-              <span className="text-muted-foreground text-xs">Steps/day</span>
+              <span className="text-muted-foreground text-xs">
+                Updates/month
+              </span>
             </div>
             <div className="text-foreground bg-muted flex h-5 w-2/3 items-center rounded px-2 text-xs dark:bg-white/20">
-              2023
+              2024
             </div>
+          </div>
+        </div>
+
+        {/* Reactions Section */}
+        <div className="border-t border-white/10 pt-3 space-y-2">
+          <div className="text-sm font-medium text-foreground">
+            Users reacted <span className="font-semibold text-white">213</span>{" "}
+            times to your changelogs this month
+          </div>
+          <div className="flex gap-2 flex-wrap text-sm">
+            <span className="bg-white/10 text-white px-3 py-1 rounded-full flex items-center gap-1">
+              🚀 <span className="font-medium">98</span>
+            </span>
+            <span className="bg-white/10 text-white px-3 py-1 rounded-full flex items-center gap-1">
+              ❤️ <span className="font-medium">67</span>
+            </span>
+            <span className="bg-white/10 text-white px-3 py-1 rounded-full flex items-center gap-1">
+              🔥 <span className="font-medium">34</span>
+            </span>
+            <span className="bg-white/10 text-white px-3 py-1 rounded-full flex items-center gap-1">
+              🙌 <span className="font-medium">14</span>
+            </span>
           </div>
         </div>
       </div>
