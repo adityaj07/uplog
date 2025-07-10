@@ -34,9 +34,8 @@ export const auth = betterAuth({
   trustedOrigins: [env.CORS_ORIGIN, env.BETTER_AUTH_URL],
   socialProviders: {
     google: {
-      prompt: "consent",
-      clientId: env.GOOGLE_CLIENT_ID as string,
-      clientSecret: env.GOOGLE_CLIENT_SECRET as string,
+      clientId: env.GOOGLE_CLIENT_ID,
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
     },
   },
   secret: env.BETTER_AUTH_SECRET,

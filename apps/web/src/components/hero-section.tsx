@@ -1,4 +1,3 @@
-import { HeroHeader } from "@/components/header";
 import { TextEffect } from "@/components/motion-primitives/text-effect";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
@@ -26,8 +25,6 @@ const transitionVariants = {
 export default function HeroSection() {
   return (
     <>
-      <HeroHeader />
-
       <main className="overflow-hidden [--color-primary-foreground:var(--color-white)] [--color-primary:var(--color-green-600)]">
         <section className="relative">
           {/* Background Image */}
@@ -119,6 +116,7 @@ export default function HeroSection() {
             </div>
           </div>
         </section>
+        {/* <AppFooter /> */}
       </main>
     </>
   );
