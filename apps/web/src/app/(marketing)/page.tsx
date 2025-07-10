@@ -8,7 +8,10 @@ export default function Home() {
   const isMobile = useIsMobile();
   return (
     <div>
-      <SideWaveBars bars={isMobile ? 10 : 15} />
+      <SideWaveBars
+        bars={isMobile ? 20 : 15}
+        sideWidthPercent={isMobile ? 35 : 30}
+      />
       <HeroSection />
     </div>
   );
