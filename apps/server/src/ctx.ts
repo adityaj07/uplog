@@ -1,10 +1,15 @@
+// ctx.ts
+import type { Auth } from "@uplog/auth";
 import type { env } from "cloudflare:workers";
-import type { auth } from "./lib/auth";
 
-export type HonoContext = {
-  Bindings: typeof env;
-  Variables: {
-    user: typeof auth.$Infer.Session.user | null;
-    session: typeof auth.$Infer.Session.session | null;
-  };
+// derive the exact User type from your auth lib
+export type SessionUser = NonNullable<
+  Awaited<ReturnType<Auth["api"]["getSession"]>>
+>["user"];
+
+export type HonoVariables = {
+  auth: Auth; // handy for handlers/tests
+  sessionUser?: SessionUser;
 };
+
+export type HonoContext = { Variables: HonoVariables; Bindings: typeof env };

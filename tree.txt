@@ -2,51 +2,90 @@
 ├── [4.0K]  apps
 │   ├── [4.0K]  server
 │   │   ├── [4.0K]  src
+│   │   │   ├── [4.0K]  controllers
+│   │   │   │   └── [1.2K]  users.ts
 │   │   │   ├── [4.0K]  db
-│   │   │   │   └── [ 681]  index.ts
+│   │   │   │   └── [ 415]  index.ts
+│   │   │   ├── [4.0K]  guards
+│   │   │   │   └── [ 390]  authguard.ts
 │   │   │   ├── [4.0K]  lib
-│   │   │   │   ├── [ 484]  auth.ts
-│   │   │   │   └── [1015]  env.ts
+│   │   │   │   ├── [ 511]  api-error.ts
+│   │   │   │   ├── [ 915]  auth.ts
+│   │   │   │   └── [ 715]  env.ts
+│   │   │   ├── [4.0K]  repositories
+│   │   │   │   └── [ 610]  users.ts
 │   │   │   ├── [4.0K]  routers
-│   │   │   │   └── [  71]  index.ts
-│   │   │   ├── [ 309]  ctx.ts
-│   │   │   └── [ 755]  index.ts
-│   │   ├── [ 777]  package.json
+│   │   │   │   ├── [ 279]  changelogs.ts
+│   │   │   │   ├── [ 444]  index.ts
+│   │   │   │   └── [ 223]  users.ts
+│   │   │   ├── [4.0K]  services
+│   │   │   │   └── [ 420]  users.ts
+│   │   │   ├── [ 430]  ctx.ts
+│   │   │   └── [1.3K]  index.ts
+│   │   ├── [ 815]  package.json
 │   │   ├── [ 491]  tsconfig.json
 │   │   ├── [282K]  worker-configuration.d.ts
 │   │   └── [ 421]  wrangler.jsonc
 │   └── [4.0K]  web
+│       ├── [4.0K]  components
+│       │   └── [4.0K]  motion-primitives
+│       │       ├── [1.7K]  progressive-blur.tsx
+│       │       └── [7.1K]  text-effect.tsx
 │       ├── [4.0K]  src
 │       │   ├── [4.0K]  app
-│       │   │   ├── [4.0K]  dashboard
-│       │   │   ├── [4.0K]  login
+│       │   │   ├── [4.0K]  (auth)
+│       │   │   ├── [4.0K]  (mainApp)
+│       │   │   ├── [4.0K]  (marketing)
+│       │   │   ├── [4.0K]  (onboarding)
 │       │   │   ├── [ 15K]  apple-icon.png
 │       │   │   ├── [ 15K]  favicon.ico
 │       │   │   ├── [188K]  icon0.svg
 │       │   │   ├── [3.2K]  icon1.png
 │       │   │   ├── [1.1K]  layout.tsx
-│       │   │   ├── [ 431]  manifest.json
-│       │   │   └── [ 388]  page.tsx
+│       │   │   └── [ 431]  manifest.json
 │       │   ├── [4.0K]  components
+│       │   │   ├── [4.0K]  motion-primitives
 │       │   │   ├── [4.0K]  ui
-│       │   │   ├── [ 758]  header.tsx
+│       │   │   ├── [3.0K]  app-preview-component.tsx
+│       │   │   ├── [2.8K]  app-sidebar.tsx
+│       │   │   ├── [3.6K]  footer.tsx
+│       │   │   ├── [4.7K]  header.tsx
+│       │   │   ├── [6.9K]  hero-section.tsx
+│       │   │   ├── [2.5K]  icons.tsx
 │       │   │   ├── [ 215]  loader.tsx
+│       │   │   ├── [3.9K]  logo-cloud.tsx
 │       │   │   ├── [1.2K]  mode-toggle.tsx
+│       │   │   ├── [2.2K]  nav-main.tsx
+│       │   │   ├── [2.3K]  nav-projects.tsx
+│       │   │   ├── [ 917]  nav-secondary.tsx
+│       │   │   ├── [3.3K]  nav-user.tsx
+│       │   │   ├── [ 949]  neumorph-button.tsx
+│       │   │   ├── [ 561]  neumorph-wrapper.tsx
 │       │   │   ├── [ 404]  providers.tsx
+│       │   │   ├── [1.8K]  sidebar-waves.tsx
 │       │   │   ├── [3.7K]  sign-in-form.tsx
 │       │   │   ├── [4.5K]  sign-up-form.tsx
+│       │   │   ├── [2.9K]  team-switcher.tsx
 │       │   │   ├── [ 295]  theme-provider.tsx
 │       │   │   └── [1.6K]  user-menu.tsx
+│       │   ├── [4.0K]  config
+│       │   │   └── [ 469]  site.ts
+│       │   ├── [4.0K]  hooks
+│       │   │   └── [ 565]  use-mobile.ts
 │       │   ├── [4.0K]  lib
-│       │   │   ├── [ 157]  auth-client.ts
+│       │   │   ├── [ 704]  auth-client.ts
 │       │   │   └── [ 166]  utils.ts
-│       │   └── [7.0K]  index.css
+│       │   ├── [4.0K]  store
+│       │   ├── [4.0K]  utils
+│       │   │   ├── [ 312]  formatPath.ts
+│       │   │   └── [1.8K]  getGreeting.ts
+│       │   └── [7.3K]  index.css
 │       ├── [281K]  cloudflare-env.d.ts
 │       ├── [ 426]  components.json
 │       ├── [ 104]  next.config.ts
 │       ├── [ 211]  next-env.d.ts
 │       ├── [ 268]  open-next.config.ts
-│       ├── [1.4K]  package.json
+│       ├── [1.9K]  package.json
 │       ├── [  81]  postcss.config.mjs
 │       ├── [ 802]  tsconfig.json
 │       └── [ 714]  wrangler.jsonc
@@ -55,13 +94,15 @@
 │   │   ├── [4.0K]  migrations
 │   │   │   ├── [4.0K]  meta
 │   │   │   │   ├── [ 40K]  0000_snapshot.json
-│   │   │   │   └── [ 208]  _journal.json
-│   │   │   └── [ 12K]  0000_normal_tempest.sql
+│   │   │   │   ├── [ 40K]  0001_snapshot.json
+│   │   │   │   └── [ 354]  _journal.json
+│   │   │   ├── [ 12K]  0000_normal_tempest.sql
+│   │   │   └── [ 338]  0001_sour_forgotten_one.sql
 │   │   ├── [4.0K]  src
 │   │   │   ├── [4.0K]  schema
-│   │   │   │   ├── [1.8K]  auth.ts
+│   │   │   │   ├── [1.9K]  auth.ts
 │   │   │   │   ├── [1.7K]  changelog.ts
-│   │   │   │   ├── [ 770]  common.ts
+│   │   │   │   ├── [ 986]  common.ts
 │   │   │   │   ├── [1006]  company.ts
 │   │   │   │   ├── [1.4K]  contributors.ts
 │   │   │   │   ├── [ 218]  index.ts
@@ -87,10 +128,12 @@
 │       ├── [4.0K]  src
 │       │   ├── [4.0K]  auth
 │       │   │   └── [ 141]  index.ts
+│       │   ├── [4.0K]  common
+│       │   │   └── [4.0K]  index.ts
 │       │   └── [  24]  index.ts
-│       ├── [ 856]  package.json
+│       ├── [1.1K]  package.json
 │       ├── [ 344]  tsconfig.json
-│       └── [ 42K]  tsconfig.tsbuildinfo
+│       └── [ 43K]  tsconfig.tsbuildinfo
 ├── [4.0K]  scripts
 │   ├── [8.4K]  env-manager.ts
 │   ├── [2.7K]  generate-exports.ts
@@ -99,10 +142,10 @@
 │   └── [ 446]  env.d.ts
 ├── [ 854]  docker-compose.yaml
 ├── [1.7K]  package.json
-├── [343K]  pnpm-lock.yaml
+├── [348K]  pnpm-lock.yaml
 ├── [  40]  pnpm-workspace.yaml
 ├── [  96]  README.md
 ├── [   0]  tree.txt
 └── [ 982]  turbo.json
 
-29 directories, 77 files
+43 directories, 106 files

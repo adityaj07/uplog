@@ -27,7 +27,7 @@
     "@uplog/db": "workspace:*",
     "@uplog/schemas": "workspace:*",
     "@uplog/types": "workspace:*",
-    "@uplog/server": "workspace:*",
+    "@uplog/auth": "workspace:*",
     "better-auth": "^1.2.10",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

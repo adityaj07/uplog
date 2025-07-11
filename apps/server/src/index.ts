@@ -1,39 +1,53 @@
-import { env } from "cloudflare:workers";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import { logger } from "hono/logger";
 import type { HonoContext } from "./ctx";
-import { auth } from "./lib/auth";
-import { indexRouter } from "./routers";
+
+import { auth } from "@uplog/auth";
+import { StatusCodes } from "@uplog/types/common/index";
+import { randomUUID } from "crypto";
+import usersRouter from "./routers/users";
+import indexRouter from "./routers";
 
 const app = new Hono<HonoContext>();
 
-app.use(logger());
+// app.use(logger());
+// app.use(
+//   "/*",
+//   cors({
+//     origin: env.CORS_ORIGIN || "",
+//     allowMethods: ["GET", "POST", "OPTIONS"],
+//     allowHeaders: ["Content-Type", "Authorization"],
+//     credentials: true,
+//   })
+// );
+
 app.use(
-  "/*",
   cors({
-    origin: env.CORS_ORIGIN || "",
+    origin: "*", // 🔓 just for debugging!
     allowMethods: ["GET", "POST", "OPTIONS"],
-    allowHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
+    allowHeaders: ["*"],
   })
 );
 
 app.use("*", async (c, next) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers });
+  const reqId = randomUUID();
+  console.log(`[${reqId}] Incoming request: ${c.req.method} ${c.req.url}`);
 
-  if (!session) {
-    c.set("user", null);
-    c.set("session", null);
-    return next();
+  try {
+    const session = await auth.api.getSession({ headers: c.req.raw.headers });
+    c.set("auth", auth);
+    c.set("sessionUser", session?.user ?? undefined);
+  } catch (err) {
+    console.error(`[${reqId}] ❌ getSession error:`, err);
+    c.set("sessionUser", undefined);
   }
 
-  c.set("user", session.user);
-  c.set("session", session.session);
-  return next();
+  const res = await next(); // ⬅ wait for downstream
+  console.log(`[${reqId}] Response sent.`);
+  return res; // ⬅ **return it**
 });
 
-app.on(["POST", "GET"], "/api/auth/**", async (c) => {
+app.use("/api/auth/**", async (c) => {
   try {
     console.log("Auth request:", c.req.url);
     return (await auth.handler(c.req.raw)) as Response;
@@ -41,7 +55,7 @@ app.on(["POST", "GET"], "/api/auth/**", async (c) => {
     console.error("Auth error:", error);
     return c.json(
       { error: "Auth failed", message: (error as Error).message },
-      500
+      StatusCodes.INTERNAL_SERVER_ERROR.code
     );
   }
 });
@@ -49,13 +63,22 @@ app.on(["POST", "GET"], "/api/auth/**", async (c) => {
 app.get("/health", (c) => {
   return c.json({
     status: "ok",
-    environment: env.CORS_ORIGIN,
-    user: c.get("user"),
-    session: c.get("session"),
     timestamp: new Date().toISOString(),
   });
 });
 
 app.route("/api/v1", indexRouter);
+
+app.notFound((c) => {
+  return c.text("Route not found", StatusCodes.NOT_FOUND.code);
+});
+
+app.onError((err, c) => {
+  console.error("Global error handler:", err);
+  return c.json(
+    { error: "Internal error", message: err.message },
+    StatusCodes.INTERNAL_SERVER_ERROR.code
+  );
+});
 
 export default app;
