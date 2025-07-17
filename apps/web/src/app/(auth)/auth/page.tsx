@@ -5,12 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 import NeumorphWrapper from "@/components/neumorph-wrapper";
 
+import { googleSignIn } from "@uplog/auth/auth-client";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
-import { googleSignIn } from "@uplog/auth";
 
 export default function AuthPage() {
   const router = useRouter();

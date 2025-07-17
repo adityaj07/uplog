@@ -1,12 +1,12 @@
-import { authClient } from "@/lib/auth-client";
 import { useForm } from "@tanstack/react-form";
+import { authClient } from "@uplog/auth/auth-client";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import z from "zod/v4";
 import Loader from "./loader";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
-import { useRouter } from "next/navigation";
 
 export default function SignUpForm({
   onSwitchToSignIn,
@@ -37,7 +37,7 @@ export default function SignUpForm({
           onError: (error) => {
             toast.error(error.error.message);
           },
-        },
+        }
       );
     },
     validators: {

@@ -47,9 +47,6 @@ importers:
       '@uplog/types':
         specifier: workspace:*
         version: link:../../packages/types
-      better-auth:
-        specifier: ^1.2.10
-        version: 1.2.12
       dotenv:
         specifier: ^16.4.7
         version: 16.6.1
@@ -120,9 +117,6 @@ importers:
       '@uplog/types':
         specifier: workspace:*
         version: link:../../packages/types
-      better-auth:
-        specifier: ^1.2.10
-        version: 1.2.12
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -7896,7 +7890,7 @@ snapshots:
 
   '@types/pg@8.15.4':
     dependencies:
-      '@types/node': 20.19.4
+      '@types/node': 24.0.10
       pg-protocol: 1.10.3
       pg-types: 2.2.0
 

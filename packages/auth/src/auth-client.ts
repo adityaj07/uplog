@@ -1,10 +1,7 @@
-import { inferAdditionalFields } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
-import { Auth } from "./auth";
 
 export const authClient = createAuthClient({
   baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
-  plugins: [inferAdditionalFields<Auth>()],
   fetchOptions: {
     credentials: "include",
   },
@@ -19,5 +16,24 @@ export const googleSignIn = async () => {
   });
 };
 
-export type user = typeof authClient.$Infer.Session.user | null;
-export type session = typeof authClient.$Infer.Session.session | null;
+export type user = {
+  id: string;
+  name: string;
+  emailVerified: boolean;
+  email: string;
+  createdAt: Date;
+  updatedAt: Date;
+  image?: string | null | undefined | undefined;
+  onboardingStatus: string[];
+} | null;
+
+export type session = {
+  id: string;
+  token: string;
+  userId: string;
+  expiresAt: Date;
+  createdAt: Date;
+  updatedAt: Date;
+  ipAddress?: string | null | undefined | undefined;
+  userAgent?: string | null | undefined | undefined;
+} | null;

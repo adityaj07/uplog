@@ -1,4 +1,4 @@
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@uplog/auth/auth-client";
 import { useForm } from "@tanstack/react-form";
 import { toast } from "sonner";
 import z from "zod/v4";
@@ -13,7 +13,7 @@ export default function SignInForm({
 }: {
   onSwitchToSignUp: () => void;
 }) {
-  const router = useRouter()
+  const router = useRouter();
   const { isPending } = authClient.useSession();
 
   const form = useForm({
@@ -29,13 +29,13 @@ export default function SignInForm({
         },
         {
           onSuccess: () => {
-            router.push("/dashboard")
+            router.push("/dashboard");
             toast.success("Sign in successful");
           },
           onError: (error) => {
             toast.error(error.error.message);
           },
-        },
+        }
       );
     },
     validators: {
