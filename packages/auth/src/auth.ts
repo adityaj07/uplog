@@ -4,15 +4,20 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { openAPI } from "better-auth/plugins";
 
-// Create a factory instead of a singleton
-function getDatabase(): Database {
-  const url =
-    process.env.NODE_ENV === "production"
-      ? process.env.DATABASE_URL_POOLER || process.env.DATABASE_URL
-      : process.env.DATABASE_URL;
+// Create a singleton database connection
+let dbInstance: Database | null = null;
 
-  if (!url) throw new Error("DATABASE_URL not configured");
-  return createDatabase(url);
+function getDatabase(): Database {
+  if (!dbInstance) {
+    const url =
+      process.env.NODE_ENV === "production"
+        ? process.env.DATABASE_URL_POOLER || process.env.DATABASE_URL
+        : process.env.DATABASE_URL;
+
+    if (!url) throw new Error("DATABASE_URL not configured");
+    dbInstance = createDatabase(url);
+  }
+  return dbInstance;
 }
 
 const db = getDatabase();

@@ -1,5 +1,5 @@
 import { boolean, index, text } from "drizzle-orm/pg-core";
-import { baseColumns, createTable } from "./common";
+import { baseColumns, createTable, layoutEnum } from "./common";
 import { nanoid } from "nanoid";
 
 // Company table
@@ -20,7 +20,9 @@ export const company = createTable(
     // Separate settings into structured fields
     publicReactionsEnabled: boolean("public_reactions_enabled").default(true),
     customCss: text("custom_css"),
-    layoutStyle: text("layout_style").default("default"), // 'default' | 'compact' | 'spacious'
+    layoutStyle: layoutEnum("changelogpage_layout")
+      .default("default")
+      .notNull(),
     ...baseColumns,
   },
   (table) => ({

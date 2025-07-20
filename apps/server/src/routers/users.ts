@@ -7,6 +7,6 @@ const usersRouter = new Hono<HonoContext>();
 
 usersRouter.use(authGuard);
 
-usersRouter.get("me", getMe);
+usersRouter.get("/me", getMe);
 
 export default usersRouter;

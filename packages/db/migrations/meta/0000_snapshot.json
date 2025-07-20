@@ -1,5 +1,5 @@
 {
-  "id": "92750fd0-352c-41bd-a19c-89a4712fa23f",
+  "id": "79c113be-130f-4fb2-ae21-850047046d18",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -250,13 +250,28 @@
           "name": "email_verified",
           "type": "boolean",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "default": false
         },
         "image": {
           "name": "image",
           "type": "text",
           "primaryKey": false,
           "notNull": false
+        },
+        "job_title": {
+          "name": "job_title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "onboardingStatus": {
+          "name": "onboardingStatus",
+          "type": "onboarding_status",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'PENDING'"
         },
         "created_at": {
           "name": "created_at",
@@ -675,11 +690,12 @@
           "primaryKey": false,
           "notNull": false
         },
-        "layout_style": {
-          "name": "layout_style",
-          "type": "text",
+        "changelogpage_layout": {
+          "name": "changelogpage_layout",
+          "type": "changelogpage_layout",
+          "typeSchema": "public",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "default": "'default'"
         },
         "created_at": {
@@ -1518,6 +1534,25 @@
         "PUBLISHED",
         "SCHEDULED",
         "ARCHIVED"
+      ]
+    },
+    "public.changelogpage_layout": {
+      "name": "changelogpage_layout",
+      "schema": "public",
+      "values": [
+        "default",
+        "compact",
+        "spacious"
+      ]
+    },
+    "public.onboarding_status": {
+      "name": "onboarding_status",
+      "schema": "public",
+      "values": [
+        "PENDING",
+        "PROFILE_COMPLETED",
+        "COMPANY_CREATED",
+        "COMPLETED"
       ]
     },
     "public.role": {

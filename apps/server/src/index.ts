@@ -2,30 +2,23 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import type { HonoContext } from "./ctx";
 
-import { auth } from "@uplog/auth";
+import { auth } from "@uplog/auth/auth";
 import { StatusCodes } from "@uplog/types/common/index";
 import { randomUUID } from "crypto";
-import usersRouter from "./routers/users";
 import indexRouter from "./routers";
+import { logger } from "hono/logger";
+import { env } from "./lib/env";
 
 const app = new Hono<HonoContext>();
 
-// app.use(logger());
-// app.use(
-//   "/*",
-//   cors({
-//     origin: env.CORS_ORIGIN || "",
-//     allowMethods: ["GET", "POST", "OPTIONS"],
-//     allowHeaders: ["Content-Type", "Authorization"],
-//     credentials: true,
-//   })
-// );
-
+app.use(logger());
 app.use(
+  "/*",
   cors({
-    origin: "*", // 🔓 just for debugging!
+    origin: env.CORS_ORIGIN || "",
     allowMethods: ["GET", "POST", "OPTIONS"],
-    allowHeaders: ["*"],
+    allowHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
   })
 );
 

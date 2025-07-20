@@ -12,6 +12,7 @@
     "cf-typegen": "wrangler types --env-interface CloudflareBindings"
   },
   "dependencies": {
+    "@hono/zod-validator": "^0.7.2",
     "@uplog/auth": "workspace:*",
     "@uplog/db": "workspace:*",
     "@uplog/schemas": "workspace:*",

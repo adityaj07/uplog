@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1751952830309,
-      "tag": "0000_normal_tempest",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1751974377196,
-      "tag": "0001_sour_forgotten_one",
+      "when": 1753022101171,
+      "tag": "0000_natural_celestials",
       "breakpoints": true
     }
   ]

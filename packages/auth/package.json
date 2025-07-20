@@ -31,10 +31,6 @@
     "./auth": {
       "types": "./dist/auth.d.ts",
       "import": "./dist/auth.js"
-    },
-    "./index": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
     }
   }
 }

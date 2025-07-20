@@ -3,18 +3,27 @@ import { timestamp } from "drizzle-orm/pg-core";
 
 // Enums for better type safety
 export const roleEnum = pgEnum("role", ["OWNER", "ADMIN", "EDITOR", "VIEWER"]);
+
 export const statusEnum = pgEnum("status", ["PENDING", "JOINED"]);
+
 export const changelogStatusEnum = pgEnum("changelog_status", [
   "DRAFT",
   "PUBLISHED",
   "SCHEDULED",
   "ARCHIVED",
 ]);
+
 export const onboardingStatusEnum = pgEnum("onboarding_status", [
   "PENDING", // signed up
   "PROFILE_COMPLETED", // profile filled
   "COMPANY_CREATED", // company created
   "COMPLETED", // full onboarding done
+]);
+
+export const layoutEnum = pgEnum("changelogpage_layout", [
+  "default",
+  "compact",
+  "spacious",
 ]);
 
 export const baseColumns = {

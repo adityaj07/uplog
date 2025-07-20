@@ -1,4 +1,6 @@
 CREATE TYPE "public"."changelog_status" AS ENUM('DRAFT', 'PUBLISHED', 'SCHEDULED', 'ARCHIVED');--> statement-breakpoint
+CREATE TYPE "public"."changelogpage_layout" AS ENUM('default', 'compact', 'spacious');--> statement-breakpoint
+CREATE TYPE "public"."onboarding_status" AS ENUM('PENDING', 'PROFILE_COMPLETED', 'COMPANY_CREATED', 'COMPLETED');--> statement-breakpoint
 CREATE TYPE "public"."role" AS ENUM('OWNER', 'ADMIN', 'EDITOR', 'VIEWER');--> statement-breakpoint
 CREATE TYPE "public"."status" AS ENUM('PENDING', 'JOINED');--> statement-breakpoint
 CREATE TABLE "uplog_account" (
@@ -35,8 +37,10 @@ CREATE TABLE "uplog_user" (
 	"id" text PRIMARY KEY NOT NULL,
 	"name" text NOT NULL,
 	"email" text NOT NULL,
-	"email_verified" boolean NOT NULL,
+	"email_verified" boolean DEFAULT false NOT NULL,
 	"image" text,
+	"job_title" text,
+	"onboardingStatus" "onboarding_status" DEFAULT 'PENDING' NOT NULL,
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
 	"updated_at" timestamp with time zone DEFAULT now() NOT NULL,
 	"deleted_at" timestamp with time zone,
@@ -86,7 +90,7 @@ CREATE TABLE "uplog_company" (
 	"setup_complete" boolean DEFAULT false,
 	"public_reactions_enabled" boolean DEFAULT true,
 	"custom_css" text,
-	"layout_style" text DEFAULT 'default',
+	"changelogpage_layout" "changelogpage_layout" DEFAULT 'default' NOT NULL,
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
 	"updated_at" timestamp with time zone DEFAULT now() NOT NULL,
 	"deleted_at" timestamp with time zone,

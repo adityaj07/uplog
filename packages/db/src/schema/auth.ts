@@ -11,6 +11,7 @@ export const user = createTable("user", {
   email: text("email").notNull().unique(),
   emailVerified: boolean("email_verified").notNull().default(false),
   image: text("image"),
+  jobTitle: text("job_title"),
   onboardingStatus: onboardingStatusEnum("onboardingStatus")
     .default("PENDING")
     .notNull(),

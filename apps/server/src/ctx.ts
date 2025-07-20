@@ -1,5 +1,4 @@
-// ctx.ts
-import type { Auth } from "@uplog/auth";
+import type { Auth } from "@uplog/auth/auth";
 import type { env } from "cloudflare:workers";
 
 // derive the exact User type from your auth lib

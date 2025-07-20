@@ -1,3 +1,3 @@
-import { createDatabase } from "./index";
+import { createDatabase, onboardingStatusEnum } from "./index";
 
 export type Database = ReturnType<typeof createDatabase>;
