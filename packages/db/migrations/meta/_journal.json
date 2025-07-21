@@ -8,6 +8,13 @@
       "when": 1753022101171,
       "tag": "0000_natural_celestials",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1753106826017,
+      "tag": "0001_moaning_synch",
+      "breakpoints": true
     }
   ]
 }

@@ -26,6 +26,8 @@ export const layoutEnum = pgEnum("changelogpage_layout", [
   "spacious",
 ]);
 
+export const inviteTypeEnum = pgEnum("invite_type", ["email", "manual"]);
+
 export const baseColumns = {
   createdAt: timestamp("created_at", { withTimezone: true })
     .defaultNow()
