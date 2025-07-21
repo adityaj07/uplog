@@ -1,4 +1,8 @@
-import { onboardingCompany, onboardingProfile } from "@/controllers/onboarding";
+import {
+  onboardingCompany,
+  onboardingComplete,
+  onboardingProfile,
+} from "@/controllers/onboarding";
 import type { HonoContext } from "@/ctx";
 import { authGuard } from "@/guards/authguard";
 import { zValidator } from "@hono/zod-validator";
@@ -20,5 +24,7 @@ onboardingRouter.post(
   zValidator("json", onboardingCompanySchema),
   onboardingCompany
 );
+
+onboardingRouter.post("/complete", onboardingComplete);
 
 export default onboardingRouter;

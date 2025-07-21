@@ -3,6 +3,7 @@ import { getDatabase } from "@/db";
 import { ApiError } from "@/lib/api-error";
 import {
   createCompanyService,
+  onboardingCompleteService,
   updateUserProfileService,
 } from "@/services/onboarding";
 import type { onboardingCompanyInput, onboardingUserInput } from "@uplog/types";
@@ -97,6 +98,48 @@ export async function onboardingCompany(c: Context<HonoContext>) {
 
     // Handle unexpected errors
     console.error("Unexpected error in onboardingCompany:", error);
+    return c.json(
+      {
+        error: "Internal server error",
+        code: "INTERNAL_SERVER_ERROR",
+        label: "INTERNAL_SERVER_ERROR",
+        details: null,
+      },
+      StatusCodes.INTERNAL_SERVER_ERROR.code
+    );
+  }
+}
+
+export async function onboardingComplete(c: Context<HonoContext>) {
+  try {
+    const sessionUser = c.var.sessionUser!;
+
+    const db = getDatabase();
+    const result = await onboardingCompleteService(db, sessionUser.id);
+
+    return c.json({
+      success: true,
+      data: {
+        result,
+        message: "Onboarding completed successfully",
+      },
+      status: StatusCodes.OK,
+    });
+  } catch (error) {
+    if (error instanceof ApiError) {
+      return c.json(
+        {
+          error: error.message,
+          code: error.code,
+          label: error.label,
+          details: error.details ?? null,
+        },
+        error.status as ContentfulStatusCode
+      );
+    }
+
+    // Handle unexpected errors
+    console.error("Unexpected error in onboardingComplete:", error);
     return c.json(
       {
         error: "Internal server error",
