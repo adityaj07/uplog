@@ -28,13 +28,17 @@
       "types": "./dist/auth/index.d.ts",
       "import": "./dist/auth/index.js"
     },
-    "./auth/login": {
-      "types": "./dist/auth/login.d.ts",
-      "import": "./dist/auth/login.js"
-    },
     "./index": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./onboarding/index": {
+      "types": "./dist/onboarding/index.d.ts",
+      "import": "./dist/onboarding/index.js"
+    },
+    "./onboarding": {
+      "types": "./dist/onboarding/index.d.ts",
+      "import": "./dist/onboarding/index.js"
     }
   }
 }

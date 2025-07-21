@@ -59,6 +59,9 @@ importers:
       hono:
         specifier: ^4.8.2
         version: 4.8.4
+      nanoid:
+        specifier: ^5.1.5
+        version: 5.1.5
       zod:
         specifier: ^3.25.16
         version: 3.25.74

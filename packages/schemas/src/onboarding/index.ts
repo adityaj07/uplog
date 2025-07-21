@@ -15,6 +15,11 @@ export const onboardingCompanySchema = z.object({
       /^[a-z0-9-]+$/,
       "Subdomain can only contain lowercase letters, numbers, and hyphens"
     ),
+  changelogpageLayout: z.enum(["default", "compact", "spacious"]),
+  brandColor: z.string().regex(/^#[0-9a-fA-F]{6}$/, {
+    message:
+      "Invalid color format. Must be a 7-character hex code (e.g., #RRGGBB).",
+  }),
 });
 
 export const onboardingUserSchema = z.object({
