@@ -7,6 +7,7 @@ import {
   ListInvitesQuerySchema,
   RoleEnum,
   SendEmailInviteSchema,
+  ValidateInviteQuerySchema,
 } from "@uplog/schemas";
 import z from "zod";
 
@@ -18,3 +19,4 @@ export type AcceptEmailInviteInput = z.infer<typeof AcceptEmailInviteSchema>;
 export type InviteTokenPayload = z.infer<typeof InviteTokenPayloadSchema>;
 export type CreateInviteInput = z.infer<typeof CreateInviteInputSchema>;
 export type ListInvitesQuery = z.infer<typeof ListInvitesQuerySchema>;
+export type ValidateInviteQuery = z.infer<typeof ValidateInviteQuerySchema>;

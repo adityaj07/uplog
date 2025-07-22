@@ -182,3 +182,50 @@ export async function listCompanyInvites(
     hasMore: offset + limit < totalCount.count,
   };
 }
+
+// Get invite by code for validation (public endpoint)
+export async function getInviteByCode(db: Database, code: string) {
+  const inviteData = await db.query.invite.findFirst({
+    where: eq(invite.code, code),
+    with: {
+      company: {
+        columns: {
+          id: true,
+          name: true,
+          logo: true,
+          brandColor: true,
+        },
+      },
+      invitedBy: {
+        columns: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      },
+    },
+  });
+
+  return inviteData;
+}
+
+// Check if user is already a member of the company (for validation)
+export async function checkUserCompanyMembership(
+  db: Database,
+  userId: string,
+  companyId: string
+) {
+  const membership = await db.query.companyMember.findFirst({
+    where: and(
+      eq(companyMember.userId, userId),
+      eq(companyMember.companyId, companyId)
+    ),
+    columns: {
+      id: true,
+      role: true,
+      status: true,
+    },
+  });
+
+  return membership;
+}
