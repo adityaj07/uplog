@@ -6,6 +6,7 @@ import {
   GenerateInviteCodeSchema,
   InviteTokenPayloadSchema,
   ListInvitesQuerySchema,
+  RevokeInviteSchema,
   RoleEnum,
   SendEmailInviteSchema,
   ValidateInviteQuerySchema,
@@ -22,3 +23,4 @@ export type CreateInviteInput = z.infer<typeof CreateInviteInputSchema>;
 export type ListInvitesQuery = z.infer<typeof ListInvitesQuerySchema>;
 export type ValidateInviteQuery = z.infer<typeof ValidateInviteQuerySchema>;
 export type AcceptInviteInput = z.infer<typeof AcceptInviteSchema>;
+export type RevokeInviteInput = z.infer<typeof RevokeInviteSchema>;

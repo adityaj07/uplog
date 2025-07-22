@@ -289,3 +289,38 @@ export async function getUserByEmail(db: Database, email: string) {
     },
   });
 }
+
+// Get invite by ID with company details (for revoke validation)
+export async function getInviteById(db: Database, inviteId: string) {
+  const inviteData = await db.query.invite.findFirst({
+    where: eq(invite.id, inviteId),
+    with: {
+      company: {
+        columns: {
+          id: true,
+          name: true,
+        },
+      },
+    },
+  });
+
+  return inviteData;
+}
+
+// Revoke invite
+export async function revokeInvite(
+  db: Database,
+  inviteId: string,
+  revokedBy: string
+): Promise<void> {
+  await db
+    .update(invite)
+    .set({
+      revoked: true,
+      updatedAt: new Date(),
+      // Optional: store who revoked it
+      // revokedBy: revokedBy,
+      // revokedAt: new Date(),
+    })
+    .where(eq(invite.id, inviteId));
+}

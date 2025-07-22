@@ -2,6 +2,7 @@ import {
   acceptInvite,
   createInvite,
   listInvites,
+  revokeInvite,
   validateInvite,
 } from "@/controllers/invite";
 import type { HonoContext } from "@/ctx";
@@ -11,6 +12,7 @@ import {
   AcceptInviteSchema,
   CreateInviteInputSchema,
   ListInvitesQuerySchema,
+  RevokeInviteSchema,
   ValidateInviteQuerySchema,
 } from "@uplog/schemas";
 import { Hono } from "hono";
@@ -42,6 +44,12 @@ inviteRouter.post(
   "/accept",
   zValidator("json", AcceptInviteSchema),
   acceptInvite
+);
+
+inviteRouter.post(
+  "/revoke",
+  zValidator("json", RevokeInviteSchema),
+  revokeInvite
 );
 
 export default inviteRouter;
