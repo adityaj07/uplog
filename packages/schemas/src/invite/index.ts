@@ -48,6 +48,10 @@ export const ValidateInviteQuerySchema = z.object({
   code: z.string().min(6, "Invalid code").max(64, "Code too long"),
 });
 
+export const AcceptInviteSchema = z.object({
+  code: z.string().min(6, "Invalid code").max(64, "Code too long"),
+});
+
 export const CreateInviteInputSchema = z.discriminatedUnion("type", [
   SendEmailInviteSchema.extend({ type: z.literal("email") }),
   GenerateInviteCodeSchema.extend({ type: z.literal("manual") }),

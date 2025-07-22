@@ -1,4 +1,5 @@
 import {
+  acceptInvite,
   createInvite,
   listInvites,
   validateInvite,
@@ -7,6 +8,7 @@ import type { HonoContext } from "@/ctx";
 import { authGuard } from "@/guards/authguard";
 import { zValidator } from "@hono/zod-validator";
 import {
+  AcceptInviteSchema,
   CreateInviteInputSchema,
   ListInvitesQuerySchema,
   ValidateInviteQuerySchema,
@@ -34,6 +36,12 @@ inviteRouter.get(
   "/list",
   zValidator("query", ListInvitesQuerySchema),
   listInvites
+);
+
+inviteRouter.post(
+  "/accept",
+  zValidator("json", AcceptInviteSchema),
+  acceptInvite
 );
 
 export default inviteRouter;

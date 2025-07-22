@@ -1,4 +1,10 @@
-import { companyMember, invite, type Database } from "@uplog/db";
+import {
+  companyMember,
+  invite,
+  roleEnum,
+  user,
+  type Database,
+} from "@uplog/db";
 import { and, count, desc, eq, gte, isNotNull, isNull, lt } from "drizzle-orm";
 import { nanoid } from "nanoid";
 
@@ -228,4 +234,58 @@ export async function checkUserCompanyMembership(
   });
 
   return membership;
+}
+
+// Mark invite as used
+export async function markInviteAsUsed(
+  db: Database,
+  inviteId: string
+): Promise<void> {
+  await db
+    .update(invite)
+    .set({
+      usedAt: new Date(),
+      useCount: 1, // For single-use invites
+      updatedAt: new Date(),
+    })
+    .where(eq(invite.id, inviteId));
+}
+
+// Create company membership
+export async function createCompanyMembership(
+  db: Database,
+  data: {
+    userId: string;
+    companyId: string;
+    role: (typeof roleEnum.enumValues)[number];
+    invitedBy?: string;
+  }
+) {
+  const [membership] = await db
+    .insert(companyMember)
+    .values({
+      id: nanoid(),
+      userId: data.userId,
+      companyId: data.companyId,
+      role: data.role,
+      status: "JOINED",
+      invitedBy: data.invitedBy,
+      invitedAt: new Date(),
+      joinedAt: new Date(),
+    })
+    .returning();
+
+  return membership;
+}
+
+// Get user by email (for email invite validation)
+export async function getUserByEmail(db: Database, email: string) {
+  return await db.query.user.findFirst({
+    where: eq(user.email, email),
+    columns: {
+      id: true,
+      email: true,
+      name: true,
+    },
+  });
 }
