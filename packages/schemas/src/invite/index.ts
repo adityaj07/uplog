@@ -38,6 +38,12 @@ export const InviteTokenPayloadSchema = z.object({
   exp: z.number(), // UNIX timestamp expiry
 });
 
+export const ListInvitesQuerySchema = z.object({
+  page: z.coerce.number().min(1).max(1000).optional().default(1),
+  limit: z.coerce.number().min(1).max(50).optional().default(10),
+  status: z.enum(["active", "expired", "revoked", "used"]).optional(),
+});
+
 export const CreateInviteInputSchema = z.discriminatedUnion("type", [
   SendEmailInviteSchema.extend({ type: z.literal("email") }),
   GenerateInviteCodeSchema.extend({ type: z.literal("manual") }),
