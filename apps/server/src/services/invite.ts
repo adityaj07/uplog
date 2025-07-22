@@ -1,4 +1,5 @@
 import { ApiError } from "@/lib/api-error";
+import { sendInviteEmail } from "@/lib/email";
 import { generateInviteCode } from "@/lib/invite";
 import { canInviteRole } from "@/lib/role-permission";
 import {
@@ -31,6 +32,7 @@ export async function createInviteService(
       );
     }
 
+    // we check if the user has permissions to send invitation
     if (!canInviteRole(membership.role, inviteData.role)) {
       throw new ApiError(
         `Insufficient permissions to invite ${inviteData.role} role`,
@@ -93,6 +95,16 @@ export async function createInviteService(
       expiresAt,
       invitedBy: userId,
     });
+
+    // 5. Send email if type is "email"
+    if (inviteData.type === "email" && inviteData.email) {
+      await sendInviteEmail({
+        to: inviteData.email,
+        inviteUrl: `${process.env.FRONTEND_URL}/invite/email?token=${code}`,
+        companyName: membership.company.name,
+        role: inviteData.role,
+      });
+    }
 
     return {
       invite: newInvite,
