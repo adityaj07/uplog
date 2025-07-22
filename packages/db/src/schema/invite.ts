@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import {
   boolean,
   index,
@@ -27,7 +28,7 @@ export const invite = createTable(
     maxUses: integer("max_uses").default(1).notNull(),
     useCount: integer("use_count").default(0).notNull(),
     expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
-    usedAt: timestamp("used_at", { withTimezone: true }).notNull(),
+    usedAt: timestamp("used_at", { withTimezone: true }),
     revoked: boolean("revoked").default(false).notNull(),
     invitedBy: text("invited_by").references(() => user.id),
     invitedAt: timestamp("invited_at", { withTimezone: true })

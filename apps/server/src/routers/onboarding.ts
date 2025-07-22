@@ -13,18 +13,13 @@ const onboardingRouter = new Hono<HonoContext>();
 
 onboardingRouter.use(authGuard);
 
-onboardingRouter.post(
-  "/profile",
-  zValidator("json", onboardingUserSchema),
-  onboardingProfile
-);
-
-onboardingRouter.post(
-  "/company",
-  zValidator("json", onboardingCompanySchema),
-  onboardingCompany
-);
-
-onboardingRouter.post("/complete", onboardingComplete);
+onboardingRouter
+  .post("/profile", zValidator("json", onboardingUserSchema), onboardingProfile)
+  .post(
+    "/company",
+    zValidator("json", onboardingCompanySchema),
+    onboardingCompany
+  )
+  .post("/complete", onboardingComplete);
 
 export default onboardingRouter;

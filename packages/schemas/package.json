@@ -32,6 +32,14 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./invite/index": {
+      "types": "./dist/invite/index.d.ts",
+      "import": "./dist/invite/index.js"
+    },
+    "./invite": {
+      "types": "./dist/invite/index.d.ts",
+      "import": "./dist/invite/index.js"
+    },
     "./onboarding/index": {
       "types": "./dist/onboarding/index.d.ts",
       "import": "./dist/onboarding/index.js"

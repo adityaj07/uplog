@@ -7,3 +7,5 @@ export * from "./invite";
 export * from "./members";
 export * from "./reactions";
 export * from "./tags";
+
+export * from "./relations";

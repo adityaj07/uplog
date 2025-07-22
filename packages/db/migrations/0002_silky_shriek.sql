@@ -1,0 +1,1 @@
+ALTER TABLE "uplog_invite" ALTER COLUMN "used_at" DROP NOT NULL;
