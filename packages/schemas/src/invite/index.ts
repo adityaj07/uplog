@@ -6,7 +6,7 @@ export const RoleEnum = z.enum(["OWNER", "ADMIN", "EDITOR", "VIEWER"]);
 export const GenerateInviteCodeSchema = z.object({
   companyId: z.string().nanoid(), // Secure UUID for company
   role: RoleEnum,
-  expiresAt: z.date().optional(), // Optional expiry for the invite code
+  expiresAt: z.coerce.date().optional(), // Optional expiry for the invite code
 });
 
 // when a user enters a code manually to join a company.

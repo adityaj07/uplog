@@ -1,23 +1,30 @@
 import type { HonoContext } from "@/ctx";
 import { getDatabase } from "@/db";
 import { ApiError } from "@/lib/api-error";
-import { getCurrentUserService } from "@/services/users";
+import { updateUserProfileService } from "@/services/onboarding";
+import type { onboardingUserInput } from "@uplog/types";
 import { StatusCodes } from "@uplog/types/common/index";
 import type { Context } from "hono";
 import type { ContentfulStatusCode } from "hono/utils/http-status";
 
-export async function getMe(c: Context<HonoContext>) {
+export async function onboardingProfile(c: Context<HonoContext>) {
   try {
-    const user = c.var.sessionUser!;
+    const sessionUser = c.var.sessionUser!;
+    const profileData = await c.req.json<onboardingUserInput>();
 
     const db = getDatabase();
-    const currentUser = await getCurrentUserService(db, user.id);
-
-    console.log("→ getMe accessed by", c.var.sessionUser?.email);
+    const updatedUser = await updateUserProfileService(
+      db,
+      sessionUser.id,
+      profileData
+    );
 
     return c.json({
       success: true,
-      data: currentUser,
+      data: {
+        user: updatedUser,
+        message: "Profile updated successfully",
+      },
       status: StatusCodes.OK,
     });
   } catch (error) {
@@ -34,7 +41,7 @@ export async function getMe(c: Context<HonoContext>) {
     }
 
     // Handle unexpected errors
-    console.error("Unexpected error in getMe:", error);
+    console.error("Unexpected error in onboardingProfile:", error);
     return c.json(
       {
         error: "Internal server error",

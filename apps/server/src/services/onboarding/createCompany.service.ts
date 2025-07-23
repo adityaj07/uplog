@@ -5,39 +5,10 @@ import {
   createCompany,
   createCompanyMember,
   updateUserOnboardingStatus,
-  updateUserProfile,
 } from "@/repositories/onboarding";
 import type { Database } from "@uplog/db";
-import type { onboardingCompanyInput, onboardingUserInput } from "@uplog/types";
+import type { onboardingCompanyInput } from "@uplog/types";
 import { StatusCodes } from "@uplog/types/common/index";
-
-export async function updateUserProfileService(
-  db: Database,
-  userId: string,
-  profileData: onboardingUserInput
-) {
-  try {
-    // Update user profile
-    const updatedUser = await updateUserProfile(db, userId, profileData);
-
-    if (!updatedUser) {
-      throw new ApiError("User not found", StatusCodes.NOT_FOUND);
-    }
-
-    // Update onboarding status to PROFILE_COMPLETED
-    await updateUserOnboardingStatus(db, userId, "PROFILE_COMPLETED");
-
-    return updatedUser;
-  } catch (error) {
-    if (error instanceof ApiError) {
-      throw error;
-    }
-    throw new ApiError(
-      "Failed to update user profile",
-      StatusCodes.INTERNAL_SERVER_ERROR
-    );
-  }
-}
 
 export async function createCompanyService(
   db: Database,
@@ -94,24 +65,6 @@ export async function createCompanyService(
     }
     throw new ApiError(
       "Failed to create company",
-      StatusCodes.INTERNAL_SERVER_ERROR
-    );
-  }
-}
-
-export async function onboardingCompleteService(db: Database, userId: string) {
-  try {
-    const result = await updateUserOnboardingStatus(db, userId, "COMPLETED");
-
-    return {
-      result,
-    };
-  } catch (error) {
-    if (error instanceof ApiError) {
-      throw error;
-    }
-    throw new ApiError(
-      "Failed to complete onboarding",
       StatusCodes.INTERNAL_SERVER_ERROR
     );
   }

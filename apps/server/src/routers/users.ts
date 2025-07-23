@@ -1,4 +1,4 @@
-import { getMe } from "@/controllers/users";
+import { getMe } from "@/controllers/user";
 import type { HonoContext } from "@/ctx";
 import { authGuard } from "@/guards/authguard";
 import { Hono } from "hono";
