@@ -2,15 +2,15 @@ import {
   boolean,
   index,
   integer,
-  json,
+  jsonb,
   text,
   timestamp,
   unique,
 } from "drizzle-orm/pg-core";
+import { nanoid } from "nanoid";
 import { user } from "./auth";
 import { baseColumns, changelogStatusEnum, createTable } from "./common";
 import { company } from "./company";
-import { nanoid } from "nanoid";
 
 // Changelog table
 export const changelog = createTable(
@@ -20,7 +20,7 @@ export const changelog = createTable(
       .primaryKey()
       .$defaultFn(() => nanoid()),
     title: text("title").notNull(),
-    content: json("content"), // rich content
+    content: jsonb("content").notNull(), // rich content
     imageUrl: text("image_url"),
     status: changelogStatusEnum("status").notNull().default("DRAFT"),
     scheduledAt: timestamp("scheduled_at", { withTimezone: true }),
