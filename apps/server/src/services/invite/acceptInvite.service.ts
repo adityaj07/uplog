@@ -6,6 +6,7 @@ import {
   getUserCompanyMembership,
   markInviteAsUsed,
 } from "@/repositories/invite";
+import { getCurrentUser } from "@/repositories/user";
 import { companyMember, user, type Database } from "@uplog/db";
 import { StatusCodes } from "@uplog/types/common/index";
 import type { AcceptInviteInput } from "@uplog/types/invite/index";
@@ -41,14 +42,7 @@ export async function acceptInviteService(
     }
 
     // 3. Get current user details
-    const currentUser = await db.query.user.findFirst({
-      where: eq(user.id, userId),
-      columns: {
-        id: true,
-        email: true,
-        name: true,
-      },
-    });
+    const currentUser = await getCurrentUser(db, userId);
 
     if (!currentUser) {
       throw new ApiError("User not found", StatusCodes.NOT_FOUND);

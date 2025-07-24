@@ -31,11 +31,6 @@ export const CreateChangelogInputSchema = z.object({
     .optional()
     .or(z.literal("")),
 
-  slug: z
-    .string({ required_error: "Slug is required" })
-    .trim()
-    .min(1, "Slug cannot be empty"),
-
   status: ChangelogStatusEnum.optional(),
 
   scheduledAt: z
@@ -48,10 +43,7 @@ export const CreateChangelogInputSchema = z.object({
     .optional()
     .default(true),
 
-  companyId: z
-    .string({ required_error: "Company ID is required" })
-    .trim()
-    .min(1, "Company ID cannot be empty"),
+  tags: z.array(z.string()).optional(),
 });
 
 export const UpdateChangelogInputSchema = z.object({
@@ -71,8 +63,6 @@ export const UpdateChangelogInputSchema = z.object({
     .optional()
     .or(z.literal("")),
 
-  slug: z.string().trim().min(1, "Slug cannot be empty").optional(),
-
   status: ChangelogStatusEnum.optional(),
 
   scheduledAt: z
@@ -90,6 +80,8 @@ export const UpdateChangelogInputSchema = z.object({
   isPublic: z
     .boolean({ invalid_type_error: "isPublic must be a boolean" })
     .optional(),
+
+  tags: z.array(z.string()).optional(),
 });
 
 export const ChangeChangelogStatusSchema = z.object({

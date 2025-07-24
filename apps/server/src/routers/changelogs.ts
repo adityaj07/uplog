@@ -1,13 +1,15 @@
-import { Hono } from "hono";
+import { createChangelog } from "@/controllers/changelog";
+import { guard } from "@/guards";
+import type { EnrichedContext } from "@/guards/types";
 import { zValidator } from "@hono/zod-validator";
-import type { HonoContext } from "@/ctx";
 import {
-  CreateChangelogInputSchema,
-  UpdateChangelogInputSchema,
-  ListChangelogQuerySchema,
   ChangeChangelogStatusSchema,
+  CreateChangelogInputSchema,
+  ListChangelogQuerySchema,
   PublishToggleSchema,
+  UpdateChangelogInputSchema,
 } from "@uplog/schemas";
+import { Hono } from "hono";
 
 // import {
 //   createChangelog,
@@ -19,13 +21,18 @@ import {
 //   toggleChangelogPublish,
 // } from "@/controllers/changelog";
 
-const changelogRouter = new Hono<HonoContext>();
+const changelogRouter = new Hono<EnrichedContext>();
 
 // Create changelog
 changelogRouter.post(
   "/",
-  zValidator("json", CreateChangelogInputSchema)
-  //   createChangelog
+  guard({
+    authRequired: true,
+    isOnboarded: true,
+    minRole: "EDITOR",
+  }),
+  zValidator("json", CreateChangelogInputSchema),
+  createChangelog
 );
 
 // List changelogs

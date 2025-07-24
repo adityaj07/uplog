@@ -1,4 +1,5 @@
 import type { HonoContext } from "@/ctx";
+import type { Company, CompanyMember } from "@uplog/db/types";
 import type { Role } from "@uplog/types/invite";
 
 export interface GuardConfig {
@@ -26,19 +27,8 @@ export interface GuardResult {
 export interface EnrichedContext extends HonoContext {
   Variables: HonoContext["Variables"] & {
     requestId: string;
-    company?: {
-      id: string;
-      name: string;
-      subdomain: string;
-      setupComplete: boolean;
-    };
-    companyMember?: {
-      id: string;
-      role: Role;
-      status: "PENDING" | "JOINED";
-      userId: string;
-      companyId: string;
-    };
+    company?: Company;
+    companyMember?: CompanyMember;
     subscription?: {
       plan: string;
       active: boolean;
