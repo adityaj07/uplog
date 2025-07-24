@@ -1,5 +1,5 @@
 import { ApiError } from "@/lib/api-error";
-import { listChangelogs } from "@/repositories/changelog/listChangelogs.repo";
+import { listChangelogs } from "@/repositories/changelog";
 import type { Database } from "@uplog/db";
 import type { ListChangelogQueryInput } from "@uplog/types/changelog/index";
 import { StatusCodes } from "@uplog/types/common/index";

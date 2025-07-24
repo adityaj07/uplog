@@ -1,7 +1,7 @@
 import type { HonoContext } from "@/ctx";
 import { getDatabase } from "@/db";
 import { ApiError } from "@/lib/api-error";
-import { listChangelogService } from "@/services/changelog/listChangelog.service";
+import { listChangelogService } from "@/services/changelog";
 import type { ListChangelogQueryInput } from "@uplog/types/changelog/index";
 import { StatusCodes } from "@uplog/types/common/index";
 import type { Context } from "hono";
