@@ -3,6 +3,7 @@ import {
   createChangelog,
   deleteChangelog,
   getChangelog,
+  toggleChangelogPublish,
   updateChangelog,
 } from "@/controllers/changelog";
 import { listChangelogs } from "@/controllers/changelog/listChangelogs.controller";
@@ -101,8 +102,14 @@ changelogRouter.patch(
 // Toggle published state (used by UI toggle switch)
 changelogRouter.patch(
   "/:id/publish",
-  zValidator("json", PublishToggleSchema)
-  //   toggleChangelogPublish
+  guard({
+    authRequired: true,
+    isOnboarded: true,
+    minRole: "EDITOR",
+  }),
+  zValidator("param", ChangeChangelogStatusParamSchema),
+  zValidator("json", PublishToggleSchema),
+  toggleChangelogPublish
 );
 
 export default changelogRouter;

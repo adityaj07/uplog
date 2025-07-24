@@ -138,3 +138,4 @@ export const GetChangelogByIdSchema = z.object({
 export const UpdateChangelogParamSchema = GetChangelogByIdSchema;
 export const DeleteChangelogParamSchema = GetChangelogByIdSchema;
 export const ChangeChangelogStatusParamSchema = GetChangelogByIdSchema;
+export const PublishToggleParamSchema = GetChangelogByIdSchema;
