@@ -1,4 +1,8 @@
-import { createChangelog, getChangelog } from "@/controllers/changelog";
+import {
+  createChangelog,
+  getChangelog,
+  updateChangelog,
+} from "@/controllers/changelog";
 import { listChangelogs } from "@/controllers/changelog/listChangelogs.controller";
 import { guard } from "@/guards";
 import type { EnrichedContext } from "@/guards/types";
@@ -62,10 +66,16 @@ changelogRouter.get(
 );
 
 // Update changelog
-changelogRouter.put(
+changelogRouter.patch(
   "/:id",
-  zValidator("json", UpdateChangelogInputSchema)
-  //   updateChangelog
+  guard({
+    authRequired: true,
+    isOnboarded: true,
+    minRole: "EDITOR",
+  }),
+  zValidator("param", GetChangelogByIdSchema),
+  zValidator("json", UpdateChangelogInputSchema),
+  updateChangelog
 );
 
 // Delete changelog

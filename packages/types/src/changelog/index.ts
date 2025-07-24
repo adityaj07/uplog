@@ -5,6 +5,7 @@ import {
   ListChangelogQuerySchema,
   PublishToggleSchema,
   UpdateChangelogInputSchema,
+  UpdateChangelogParamSchema,
 } from "@uplog/schemas";
 
 import z from "zod";
@@ -17,3 +18,6 @@ export type ChangeChangelogStatusInput = z.infer<
 export type ListChangelogQueryInput = z.infer<typeof ListChangelogQuerySchema>;
 export type PublishToggleInput = z.infer<typeof PublishToggleSchema>;
 export type GetChangelogByIdQueryInput = z.infer<typeof GetChangelogByIdSchema>;
+export type UpdateChangelogParamInput = z.infer<
+  typeof UpdateChangelogParamSchema
+>;

@@ -1,22 +1,27 @@
 import type { HonoContext } from "@/ctx";
 import { getDatabase } from "@/db";
 import { ApiError } from "@/lib/api-error";
-import { getChangelogByIdService } from "@/services/changelog";
-import type { GetChangelogByIdQueryInput } from "@uplog/types/changelog/index";
+import { updateChangelogService } from "@/services/changelog/updateChangelog.service";
+import type {
+  UpdateChangelogInput,
+  UpdateChangelogParamInput,
+} from "@uplog/types/changelog/index";
 import { StatusCodes } from "@uplog/types/common/index";
 import type { Context } from "hono";
 import type { ContentfulStatusCode } from "hono/utils/http-status";
 
-export async function getChangelog(c: Context<HonoContext>) {
+export async function updateChangelog(c: Context<HonoContext>) {
   try {
     const sessionUser = c.var.sessionUser!;
     const sessionUserCompany = c.var.company!;
-    const param = c.req.param() as unknown as GetChangelogByIdQueryInput;
+    const param = c.req.param() as unknown as UpdateChangelogParamInput;
+    const changelogData = (await c.req.json()) as UpdateChangelogInput;
 
     const db = getDatabase();
-    const result = await getChangelogByIdService(
+    const result = await updateChangelogService(
       db,
       sessionUser.id,
+      changelogData,
       sessionUserCompany.id,
       param.id
     );
@@ -25,7 +30,7 @@ export async function getChangelog(c: Context<HonoContext>) {
       success: true,
       data: {
         result,
-        message: `Succesfully fetched changelog`,
+        message: `Successfully updated changelog.`,
       },
       status: StatusCodes.OK,
     });

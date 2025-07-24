@@ -134,3 +134,5 @@ export const GetChangelogByIdSchema = z.object({
     .string({ required_error: "Changelog ID is required" })
     .min(1, "Changelog ID cannot be empty"),
 });
+
+export const UpdateChangelogParamSchema = GetChangelogByIdSchema;
