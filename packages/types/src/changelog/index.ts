@@ -1,6 +1,7 @@
 import {
   ChangeChangelogStatusSchema,
   CreateChangelogInputSchema,
+  DeleteChangelogParamSchema,
   GetChangelogByIdSchema,
   ListChangelogQuerySchema,
   PublishToggleSchema,
@@ -20,4 +21,7 @@ export type PublishToggleInput = z.infer<typeof PublishToggleSchema>;
 export type GetChangelogByIdQueryInput = z.infer<typeof GetChangelogByIdSchema>;
 export type UpdateChangelogParamInput = z.infer<
   typeof UpdateChangelogParamSchema
+>;
+export type DeleteChangelogParamInput = z.infer<
+  typeof DeleteChangelogParamSchema
 >;

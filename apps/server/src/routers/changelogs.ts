@@ -1,5 +1,6 @@
 import {
   createChangelog,
+  deleteChangelog,
   getChangelog,
   updateChangelog,
 } from "@/controllers/changelog";
@@ -10,10 +11,12 @@ import { zValidator } from "@hono/zod-validator";
 import {
   ChangeChangelogStatusSchema,
   CreateChangelogInputSchema,
+  DeleteChangelogParamSchema,
   GetChangelogByIdSchema,
   ListChangelogQuerySchema,
   PublishToggleSchema,
   UpdateChangelogInputSchema,
+  UpdateChangelogParamSchema,
 } from "@uplog/schemas";
 import { Hono } from "hono";
 
@@ -73,15 +76,21 @@ changelogRouter.patch(
     isOnboarded: true,
     minRole: "EDITOR",
   }),
-  zValidator("param", GetChangelogByIdSchema),
+  zValidator("param", UpdateChangelogParamSchema),
   zValidator("json", UpdateChangelogInputSchema),
   updateChangelog
 );
 
 // Delete changelog
 changelogRouter.delete(
-  "/:id"
-  // deleteChangelog
+  "/:id",
+  guard({
+    authRequired: true,
+    isOnboarded: true,
+    minRole: "EDITOR",
+  }),
+  zValidator("param", DeleteChangelogParamSchema),
+  deleteChangelog
 );
 
 // Change status (e.g., DRAFT → PUBLISHED)
