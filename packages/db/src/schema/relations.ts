@@ -12,7 +12,6 @@ import { changelogTag, tag } from "./tags";
 export const userRelations = relations(user, ({ many, one }) => ({
   sessions: many(session),
   accounts: many(account),
-  companiesOwned: many(company),
   companyMemberships: many(companyMember),
   changelogsCreated: many(changelog, { relationName: "changelogCreator" }),
   changelogsUpdated: many(changelog, { relationName: "changelogUpdater" }),

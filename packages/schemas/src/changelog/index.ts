@@ -128,3 +128,9 @@ export const PublishToggleSchema = z.object({
     invalid_type_error: "isPublished must be a boolean",
   }),
 });
+
+export const GetChangelogByIdSchema = z.object({
+  id: z
+    .string({ required_error: "Changelog ID is required" })
+    .min(1, "Changelog ID cannot be empty"),
+});

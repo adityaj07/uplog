@@ -1,4 +1,4 @@
-import { createChangelog } from "@/controllers/changelog";
+import { createChangelog, getChangelog } from "@/controllers/changelog";
 import { listChangelogs } from "@/controllers/changelog/listChangelogs.controller";
 import { guard } from "@/guards";
 import type { EnrichedContext } from "@/guards/types";
@@ -6,6 +6,7 @@ import { zValidator } from "@hono/zod-validator";
 import {
   ChangeChangelogStatusSchema,
   CreateChangelogInputSchema,
+  GetChangelogByIdSchema,
   ListChangelogQuerySchema,
   PublishToggleSchema,
   UpdateChangelogInputSchema,
@@ -50,8 +51,14 @@ changelogRouter.get(
 
 // Get changelog by ID
 changelogRouter.get(
-  "/:id"
-  // getChangelog
+  "/:id",
+  guard({
+    authRequired: true,
+    isOnboarded: true,
+    minRole: "VIEWER",
+  }),
+  zValidator("param", GetChangelogByIdSchema),
+  getChangelog
 );
 
 // Update changelog

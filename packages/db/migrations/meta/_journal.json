@@ -22,6 +22,13 @@
       "when": 1753121065244,
       "tag": "0002_silky_shriek",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1753366753288,
+      "tag": "0003_icy_yellowjacket",
+      "breakpoints": true
     }
   ]
 }
