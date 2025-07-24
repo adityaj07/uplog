@@ -1,4 +1,5 @@
 import {
+  changeChangelogStatus,
   createChangelog,
   deleteChangelog,
   getChangelog,
@@ -9,6 +10,7 @@ import { guard } from "@/guards";
 import type { EnrichedContext } from "@/guards/types";
 import { zValidator } from "@hono/zod-validator";
 import {
+  ChangeChangelogStatusParamSchema,
   ChangeChangelogStatusSchema,
   CreateChangelogInputSchema,
   DeleteChangelogParamSchema,
@@ -19,16 +21,6 @@ import {
   UpdateChangelogParamSchema,
 } from "@uplog/schemas";
 import { Hono } from "hono";
-
-// import {
-//   createChangelog,
-//   updateChangelog,
-//   listChangelogs,
-//   getChangelog,
-//   deleteChangelog,
-//   changeChangelogStatus,
-//   toggleChangelogPublish,
-// } from "@/controllers/changelog";
 
 const changelogRouter = new Hono<EnrichedContext>();
 
@@ -96,8 +88,14 @@ changelogRouter.delete(
 // Change status (e.g., DRAFT → PUBLISHED)
 changelogRouter.patch(
   "/:id/status",
-  zValidator("json", ChangeChangelogStatusSchema)
-  //   changeChangelogStatus
+  guard({
+    authRequired: true,
+    isOnboarded: true,
+    minRole: "EDITOR",
+  }),
+  zValidator("param", ChangeChangelogStatusParamSchema),
+  zValidator("json", ChangeChangelogStatusSchema),
+  changeChangelogStatus
 );
 
 // Toggle published state (used by UI toggle switch)

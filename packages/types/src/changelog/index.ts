@@ -25,3 +25,6 @@ export type UpdateChangelogParamInput = z.infer<
 export type DeleteChangelogParamInput = z.infer<
   typeof DeleteChangelogParamSchema
 >;
+export type ChangeChangelogStatusParamInput = z.infer<
+  typeof DeleteChangelogParamSchema
+>;
