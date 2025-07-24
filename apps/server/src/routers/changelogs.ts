@@ -1,4 +1,5 @@
 import { createChangelog } from "@/controllers/changelog";
+import { listChangelogs } from "@/controllers/changelog/listChangelogs.controller";
 import { guard } from "@/guards";
 import type { EnrichedContext } from "@/guards/types";
 import { zValidator } from "@hono/zod-validator";
@@ -38,8 +39,13 @@ changelogRouter.post(
 // List changelogs
 changelogRouter.get(
   "/",
-  zValidator("query", ListChangelogQuerySchema)
-  //   listChangelogs
+  guard({
+    authRequired: true,
+    isOnboarded: true,
+    minRole: "VIEWER",
+  }),
+  zValidator("query", ListChangelogQuerySchema),
+  listChangelogs
 );
 
 // Get changelog by ID

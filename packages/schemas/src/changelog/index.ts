@@ -89,17 +89,34 @@ export const ChangeChangelogStatusSchema = z.object({
 });
 
 export const ListChangelogQuerySchema = z.object({
-  companyId: z
-    .string({ required_error: "Company ID is required" })
-    .trim()
-    .min(1, "Company ID cannot be empty"),
-
   status: ChangelogStatusEnum.optional(),
 
   search: z
     .string({ invalid_type_error: "Search must be a string" })
     .trim()
     .optional(),
+
+  sort: z
+    .enum(["createdAt", "updatedAt", "publishedAt", "scheduledAt"])
+    .optional()
+    .default("createdAt"),
+
+  order: z.enum(["asc", "desc"]).optional().default("desc"),
+
+  tags: z
+    .union([
+      z
+        .string()
+        .trim()
+        .transform((s) => s.split(",").map((tag) => tag.trim())),
+      z.array(z.string().trim()),
+    ])
+    .optional(),
+
+  startDate: z.coerce.date().optional(),
+  endDate: z.coerce.date().optional(),
+
+  isPublic: z.coerce.boolean().optional(),
 
   page: z.coerce.number().min(1).max(1000).optional().default(1),
   limit: z.coerce.number().min(1).max(50).optional().default(10),
