@@ -28,6 +28,14 @@
       "types": "./dist/auth/index.d.ts",
       "import": "./dist/auth/index.js"
     },
+    "./changelog/index": {
+      "types": "./dist/changelog/index.d.ts",
+      "import": "./dist/changelog/index.js"
+    },
+    "./changelog": {
+      "types": "./dist/changelog/index.d.ts",
+      "import": "./dist/changelog/index.js"
+    },
     "./index": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"

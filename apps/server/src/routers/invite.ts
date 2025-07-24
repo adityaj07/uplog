@@ -6,7 +6,8 @@ import {
   validateInvite,
 } from "@/controllers/invite";
 import type { HonoContext } from "@/ctx";
-import { authGuard } from "@/guards/authguard";
+import { guard } from "@/guards";
+
 import { zValidator } from "@hono/zod-validator";
 import {
   AcceptInviteSchema,
@@ -26,29 +27,49 @@ inviteRouter.get(
   validateInvite
 );
 
-inviteRouter.use(authGuard);
-
+// Create invite - requires auth + onboarding + invite permission
 inviteRouter.post(
   "/",
   zValidator("json", CreateInviteInputSchema),
+  guard({
+    authRequired: true,
+    isOnboarded: true,
+    canInvite: true,
+  }),
   createInvite
 );
 
+// List invites - requires auth + onboarding + minimum ADMIN role
 inviteRouter.get(
   "/list",
   zValidator("query", ListInvitesQuerySchema),
+  guard({
+    authRequired: true,
+    isOnboarded: true,
+    minRole: "ADMIN",
+  }),
   listInvites
 );
 
+// Accept invite - requires auth only
 inviteRouter.post(
   "/accept",
   zValidator("json", AcceptInviteSchema),
+  guard({
+    authRequired: true,
+  }),
   acceptInvite
 );
 
+// Revoke invite - requires auth + onboarding + ADMIN role
 inviteRouter.post(
   "/revoke",
   zValidator("json", RevokeInviteSchema),
+  guard({
+    authRequired: true,
+    isOnboarded: true,
+    minRole: "ADMIN",
+  }),
   revokeInvite
 );
 

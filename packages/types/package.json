@@ -30,6 +30,14 @@
       "types": "./dist/auth/index.d.ts",
       "import": "./dist/auth/index.js"
     },
+    "./changelog/index": {
+      "types": "./dist/changelog/index.d.ts",
+      "import": "./dist/changelog/index.js"
+    },
+    "./changelog": {
+      "types": "./dist/changelog/index.d.ts",
+      "import": "./dist/changelog/index.js"
+    },
     "./common/index": {
       "types": "./dist/common/index.d.ts",
       "import": "./dist/common/index.js"

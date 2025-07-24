@@ -5,9 +5,10 @@ import type { HonoContext } from "./ctx";
 import { auth } from "@uplog/auth/auth";
 import { StatusCodes } from "@uplog/types/common/index";
 import { randomUUID } from "crypto";
-import indexRouter from "./routers";
 import { logger } from "hono/logger";
 import { env } from "./lib/env";
+import { enrichContext } from "./middleware/enrichContext";
+import indexRouter from "./routers";
 
 const app = new Hono<HonoContext>();
 
@@ -39,6 +40,9 @@ app.use("*", async (c, next) => {
   console.log(`[${reqId}] Response sent.`);
   return res; // ⬅ **return it**
 });
+
+// Apply enrichment middleware globally for API routes
+app.use("/api/v1/*", enrichContext);
 
 app.use("/api/auth/**", async (c) => {
   try {

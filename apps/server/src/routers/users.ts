@@ -1,11 +1,16 @@
 import { getMe } from "@/controllers/user";
 import type { HonoContext } from "@/ctx";
-import { authGuard } from "@/guards/authguard";
+import { guard } from "@/guards";
 import { Hono } from "hono";
 
 const usersRouter = new Hono<HonoContext>();
 
-usersRouter.use(authGuard);
+usersRouter.use(
+  guard({
+    authRequired: true,
+    minRole: "ADMIN",
+  })
+);
 
 usersRouter.get("/me", getMe);
 

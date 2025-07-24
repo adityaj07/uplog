@@ -9,13 +9,17 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.js"
+    },
     "./schema": {
       "types": "./dist/schema/index.d.ts",
       "import": "./dist/schema/index.js"
     }
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && tsx ../../scripts/generate-exports.ts .",
     "dev": "tsc --watch",
     "check-types": "tsc --noEmit",
     "debug-env": "node scripts/debug-env.js",

@@ -1,11 +1,11 @@
 import type { roleEnum } from "@uplog/db";
 
-const ROLE_HIERARCHY = {
+export const ROLE_HIERARCHY = {
   OWNER: 4,
   ADMIN: 3,
   EDITOR: 2,
   VIEWER: 1,
-};
+} as const;
 
 export function canInviteRole(
   userRole: (typeof roleEnum.enumValues)[number],
