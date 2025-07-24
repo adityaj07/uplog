@@ -97,7 +97,7 @@ const mockActivityLogs = [
   },
   {
     id: 2,
-    user: "Tanisha Roy",
+    user: "Thanisha Belchada",
     action: "Edited company settings",
     target: "Uplog Branding",
     timestamp: "25 minutes ago",
