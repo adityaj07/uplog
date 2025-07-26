@@ -1,6 +1,6 @@
 import { companyMember, user, type Database } from "@uplog/db";
 import type { ListMembersQuery } from "@uplog/types";
-import { and, desc, eq, ilike, isNull } from "drizzle-orm";
+import { and, desc, eq, ilike, isNull, sql } from "drizzle-orm";
 
 export async function listMembers(
   db: Database,
@@ -22,7 +22,7 @@ export async function listMembers(
   const whereMemberOnly = [
     eq(companyMember.companyId, companyId),
     isNull(companyMember.deletedAt), // Exclude soft-deleted members
-    isNull(user.deletedAt), // Exclude soft-deleted users (optional)
+    isNull(user.deletedAt), // Exclude soft-deleted users
   ];
 
   if (status) whereMemberOnly.push(eq(companyMember.status, status));
@@ -61,12 +61,12 @@ export async function listMembers(
 
     search
       ? db
-          .select({ total: db.$count(companyMember) })
+          .select({ total: sql<number>`count(*)` })
           .from(companyMember)
           .leftJoin(user, eq(user.id, companyMember.userId))
           .where(where)
       : db
-          .select({ total: db.$count(companyMember) })
+          .select({ total: sql<number>`count(*)` })
           .from(companyMember)
           .leftJoin(user, eq(user.id, companyMember.userId))
           .where(and(...whereMemberOnly)),
