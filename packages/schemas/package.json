@@ -48,6 +48,14 @@
       "types": "./dist/invite/index.d.ts",
       "import": "./dist/invite/index.js"
     },
+    "./member/index": {
+      "types": "./dist/member/index.d.ts",
+      "import": "./dist/member/index.js"
+    },
+    "./member": {
+      "types": "./dist/member/index.d.ts",
+      "import": "./dist/member/index.js"
+    },
     "./onboarding/index": {
       "types": "./dist/onboarding/index.d.ts",
       "import": "./dist/onboarding/index.js"

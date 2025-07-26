@@ -1,30 +1,19 @@
 import type { HonoContext } from "@/ctx";
 import { getDatabase } from "@/db";
 
-import type { MiddlewareHandler } from "hono";
-import { randomUUID } from "crypto";
+import { getCompanyDetails } from "@/repositories/company";
 import {
   getUserCompanyId,
   getUserCompanyMembership,
 } from "@/repositories/invite";
-import { getCompanyDetails } from "@/repositories/company";
+import type { Company, CompanyMember } from "@uplog/db/types";
+import { randomUUID } from "crypto";
+import type { MiddlewareHandler } from "hono";
 
 export interface EnrichedVariables {
   requestId: string;
-  company?: {
-    id: string;
-    name: string;
-    subdomain: string;
-    setupComplete: boolean;
-    // Add other company fields as needed
-  };
-  companyMember?: {
-    id: string;
-    role: "OWNER" | "ADMIN" | "EDITOR" | "VIEWER";
-    status: "PENDING" | "JOINED";
-    userId: string;
-    companyId: string;
-  };
+  company?: Company;
+  companyMember?: CompanyMember;
 }
 
 export const enrichContext: MiddlewareHandler<HonoContext> = async (

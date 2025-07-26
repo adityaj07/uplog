@@ -1,17 +1,17 @@
 import { getMe } from "@/controllers/user";
-import type { HonoContext } from "@/ctx";
 import { guard } from "@/guards";
+import type { EnrichedContext } from "@/guards/types";
 import { Hono } from "hono";
 
-const usersRouter = new Hono<HonoContext>();
+const usersRouter = new Hono<EnrichedContext>();
 
-usersRouter.use(
+usersRouter.get(
+  "/me",
   guard({
     authRequired: true,
-    minRole: "ADMIN",
-  })
+    minRole: "VIEWER",
+  }),
+  getMe
 );
-
-usersRouter.get("/me", getMe);
 
 export default usersRouter;

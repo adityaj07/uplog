@@ -77,7 +77,7 @@ export async function listChangelogs(
       .where(and(...whereClauses)),
   ]);
 
-  const hasMore = offset + changelogs.length < total;
+  const hasMore = page * limit < total;
 
   return {
     changelogs,
