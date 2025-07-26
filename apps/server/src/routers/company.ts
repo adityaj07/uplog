@@ -1,14 +1,9 @@
-import type { HonoContext } from "@/ctx";
+import type { EnrichedContext } from "@/guards/types";
 import { Hono } from "hono";
 import membersRouter from "./members";
-import type { EnrichedContext } from "@/guards/types";
 
 const companyRouter = new Hono<EnrichedContext>();
 
-companyRouter.route(
-  "/:id/members",
-
-  membersRouter
-);
+companyRouter.route("/:companyId/members", membersRouter);
 
 export default companyRouter;

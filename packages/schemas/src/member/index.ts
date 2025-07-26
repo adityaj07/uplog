@@ -1,10 +1,16 @@
 import z from "zod";
-import { RoleEnum } from "../invite";
 import { GetChangelogByIdSchema } from "../changelog";
+import { RoleEnum } from "../invite";
 
 export const memberInvitestatusEnum = z.enum(["PENDING", "JOINED"], {
   errorMap: () => ({
     message: "Status must be one of: PENDING, JOINED",
+  }),
+});
+
+export const memberRoleEnum = z.enum(["OWNER", "ADMIN", "EDITOR", "VIEWER"], {
+  errorMap: () => ({
+    message: "Status must be one of: OWNER, ADMIN, EDITOR, VIEWER",
   }),
 });
 
@@ -27,4 +33,16 @@ export const ListMembersQuerySchema = z.object({
   limit: z.coerce.number().min(1).max(50).optional().default(10),
 });
 
+export const UpdateMemberRoleInputSchema = z.object({
+  role: memberRoleEnum,
+});
+
 export const ListMembersParamSchema = GetChangelogByIdSchema;
+export const UpdateMemberParamSchema = z.object({
+  companyId: z
+    .string({ required_error: "Company ID is required" })
+    .min(1, "Company ID cannot be empty"),
+  memberId: z
+    .string({ required_error: "Member ID is required" })
+    .min(1, "Member ID cannot be empty"),
+});
