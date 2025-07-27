@@ -1,8 +1,14 @@
-import { listMembers, updateMember } from "@/controllers/member";
+import {
+  bulkRemoveMembers,
+  listMembers,
+  updateMember,
+} from "@/controllers/member";
 import { guard } from "@/guards";
 import type { EnrichedContext } from "@/guards/types";
 import { zValidator } from "@hono/zod-validator";
 import {
+  BulkRemoveMembersBodySchema,
+  BulkRemoveMembersParamSchema,
   ListMembersParamSchema,
   ListMembersQuerySchema,
   UpdateMemberParamSchema,
@@ -36,6 +42,19 @@ membersRouter.patch(
   zValidator("param", UpdateMemberParamSchema),
   zValidator("json", UpdateMemberRoleInputSchema),
   updateMember
+);
+
+// remove member
+membersRouter.delete(
+  "/",
+  guard({
+    authRequired: true,
+    isOnboarded: true,
+    minRole: "ADMIN",
+  }),
+  zValidator("param", BulkRemoveMembersParamSchema),
+  zValidator("json", BulkRemoveMembersBodySchema),
+  bulkRemoveMembers
 );
 
 export default membersRouter;

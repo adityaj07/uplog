@@ -46,3 +46,11 @@ export const UpdateMemberParamSchema = z.object({
     .string({ required_error: "Member ID is required" })
     .min(1, "Member ID cannot be empty"),
 });
+
+export const BulkRemoveMembersParamSchema = z.object({
+  companyId: z.string().min(1),
+});
+
+export const BulkRemoveMembersBodySchema = z.object({
+  memberIds: z.array(z.string().min(1)).min(1),
+});
