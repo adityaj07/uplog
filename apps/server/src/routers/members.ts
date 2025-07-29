@@ -1,5 +1,6 @@
 import {
   bulkRemoveMembers,
+  leaveMemberCompany,
   listMembers,
   updateMember,
 } from "@/controllers/member";
@@ -9,6 +10,7 @@ import { zValidator } from "@hono/zod-validator";
 import {
   BulkRemoveMembersBodySchema,
   BulkRemoveMembersParamSchema,
+  LeaveCompanyParamSchema,
   ListMembersParamSchema,
   ListMembersQuerySchema,
   UpdateMemberParamSchema,
@@ -55,6 +57,18 @@ membersRouter.delete(
   zValidator("param", BulkRemoveMembersParamSchema),
   zValidator("json", BulkRemoveMembersBodySchema),
   bulkRemoveMembers
+);
+
+// member leaves a company
+membersRouter.delete(
+  "/leave",
+  guard({
+    authRequired: true,
+    isOnboarded: true,
+    minRole: "VIEWER",
+  }),
+  zValidator("param", LeaveCompanyParamSchema),
+  leaveMemberCompany
 );
 
 export default membersRouter;

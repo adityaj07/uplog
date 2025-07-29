@@ -54,3 +54,7 @@ export const BulkRemoveMembersParamSchema = z.object({
 export const BulkRemoveMembersBodySchema = z.object({
   memberIds: z.array(z.string().min(1)).min(1),
 });
+
+export const LeaveCompanyParamSchema = z.object({
+  companyId: z.string().min(1),
+});

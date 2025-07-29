@@ -1,6 +1,7 @@
 import {
   BulkRemoveMembersBodySchema,
   BulkRemoveMembersParamSchema,
+  LeaveCompanyParamSchema,
   ListMembersParamSchema,
   ListMembersQuerySchema,
   UpdateMemberParamSchema,
@@ -18,3 +19,4 @@ export type BulkRemoveMembersParamInput = z.infer<
 export type BulkRemoveMembersBodyInput = z.infer<
   typeof BulkRemoveMembersBodySchema
 >;
+export type LeaveCompanyParamInput = z.infer<typeof LeaveCompanyParamSchema>;
