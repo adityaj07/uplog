@@ -1,4 +1,4 @@
-import { createTag, listAllTags } from "@/controllers/tag";
+import { createTag, listAllTags, updateTag } from "@/controllers/tag";
 import { guard } from "@/guards";
 import type { EnrichedContext } from "@/guards/types";
 import { zValidator } from "@hono/zod-validator";
@@ -6,6 +6,7 @@ import {
   CreateTagParamSchema,
   ListTagsParamSchema,
   UpdateTagParamSchema,
+  UpdateTagSchema,
 } from "@uplog/schemas";
 import { Hono } from "hono";
 
@@ -44,7 +45,8 @@ tagsRouter.patch(
     minRole: "EDITOR",
   }),
   zValidator("param", UpdateTagParamSchema),
-  listAllTags
+  zValidator("json", UpdateTagSchema),
+  updateTag
 );
 
 // delete tag
