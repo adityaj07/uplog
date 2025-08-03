@@ -9,13 +9,65 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./types": {
-      "types": "./dist/types.d.ts",
-      "import": "./dist/types.js"
+    "./drizzle.config": {
+      "types": "./dist/drizzle.config.d.ts",
+      "import": "./dist/drizzle.config.js"
+    },
+    "./index": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./schema/auth": {
+      "types": "./dist/schema/auth.d.ts",
+      "import": "./dist/schema/auth.js"
+    },
+    "./schema/changelog": {
+      "types": "./dist/schema/changelog.d.ts",
+      "import": "./dist/schema/changelog.js"
+    },
+    "./schema/common": {
+      "types": "./dist/schema/common.d.ts",
+      "import": "./dist/schema/common.js"
+    },
+    "./schema/company": {
+      "types": "./dist/schema/company.d.ts",
+      "import": "./dist/schema/company.js"
+    },
+    "./schema/contributors": {
+      "types": "./dist/schema/contributors.d.ts",
+      "import": "./dist/schema/contributors.js"
+    },
+    "./schema/index": {
+      "types": "./dist/schema/index.d.ts",
+      "import": "./dist/schema/index.js"
     },
     "./schema": {
       "types": "./dist/schema/index.d.ts",
       "import": "./dist/schema/index.js"
+    },
+    "./schema/invite": {
+      "types": "./dist/schema/invite.d.ts",
+      "import": "./dist/schema/invite.js"
+    },
+    "./schema/members": {
+      "types": "./dist/schema/members.d.ts",
+      "import": "./dist/schema/members.js"
+    },
+    "./schema/reactions": {
+      "types": "./dist/schema/reactions.d.ts",
+      "import": "./dist/schema/reactions.js"
+    },
+    "./schema/relations": {
+      "types": "./dist/schema/relations.d.ts",
+      "import": "./dist/schema/relations.js"
+    },
+    "./schema/tags": {
+      "types": "./dist/schema/tags.d.ts",
+      "import": "./dist/schema/tags.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.js"
     }
   },
   "scripts": {

@@ -7,13 +7,49 @@ import { Hono } from "hono";
 
 const tagsRouter = new Hono<EnrichedContext>();
 
-// list members
+// list tags
 tagsRouter.get(
   "/",
   guard({
     authRequired: true,
     isOnboarded: true,
     minRole: "VIEWER",
+  }),
+  zValidator("param", ListTagsParamSchema),
+  listAllTags
+);
+
+// create tag
+tagsRouter.post(
+  "/",
+  guard({
+    authRequired: true,
+    isOnboarded: true,
+    minRole: "EDITOR",
+  }),
+  zValidator("param", ListTagsParamSchema),
+  listAllTags
+);
+
+// update tag
+tagsRouter.patch(
+  "/:tagId",
+  guard({
+    authRequired: true,
+    isOnboarded: true,
+    minRole: "EDITOR",
+  }),
+  zValidator("param", ListTagsParamSchema),
+  listAllTags
+);
+
+// delete tag
+tagsRouter.patch(
+  "/:tagId",
+  guard({
+    authRequired: true,
+    isOnboarded: true,
+    minRole: "EDITOR",
   }),
   zValidator("param", ListTagsParamSchema),
   listAllTags
