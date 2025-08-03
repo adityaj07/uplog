@@ -73,6 +73,14 @@
     "./onboarding": {
       "types": "./dist/onboarding/index.d.ts",
       "import": "./dist/onboarding/index.js"
+    },
+    "./tag/index": {
+      "types": "./dist/tag/index.d.ts",
+      "import": "./dist/tag/index.js"
+    },
+    "./tag": {
+      "types": "./dist/tag/index.d.ts",
+      "import": "./dist/tag/index.js"
     }
   }
 }

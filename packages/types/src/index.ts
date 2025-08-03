@@ -4,3 +4,4 @@ export * from "./common";
 export * from "./invite";
 export * from "./member";
 export * from "./onboarding";
+export * from "./tag";

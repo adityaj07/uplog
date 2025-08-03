@@ -13,6 +13,5 @@ indexRouter.route("/users", usersRouter);
 indexRouter.route("/onboarding", onboardingRouter);
 indexRouter.route("/companies", companyRouter);
 indexRouter.route("/invite", inviteRouter);
-indexRouter.route("/changelogs", changelogRouter);
 
 export default indexRouter;
