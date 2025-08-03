@@ -1,8 +1,12 @@
-import { listAllTags } from "@/controllers/tag";
+import { createTag, listAllTags } from "@/controllers/tag";
 import { guard } from "@/guards";
 import type { EnrichedContext } from "@/guards/types";
 import { zValidator } from "@hono/zod-validator";
-import { ListTagsParamSchema } from "@uplog/schemas";
+import {
+  CreateTagParamSchema,
+  ListTagsParamSchema,
+  UpdateTagParamSchema,
+} from "@uplog/schemas";
 import { Hono } from "hono";
 
 const tagsRouter = new Hono<EnrichedContext>();
@@ -27,8 +31,8 @@ tagsRouter.post(
     isOnboarded: true,
     minRole: "EDITOR",
   }),
-  zValidator("param", ListTagsParamSchema),
-  listAllTags
+  zValidator("param", CreateTagParamSchema),
+  createTag
 );
 
 // update tag
@@ -39,7 +43,7 @@ tagsRouter.patch(
     isOnboarded: true,
     minRole: "EDITOR",
   }),
-  zValidator("param", ListTagsParamSchema),
+  zValidator("param", UpdateTagParamSchema),
   listAllTags
 );
 
