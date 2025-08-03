@@ -1,9 +1,15 @@
-import { createTag, listAllTags, updateTag } from "@/controllers/tag";
+import {
+  createTag,
+  deleteTag,
+  listAllTags,
+  updateTag,
+} from "@/controllers/tag";
 import { guard } from "@/guards";
 import type { EnrichedContext } from "@/guards/types";
 import { zValidator } from "@hono/zod-validator";
 import {
   CreateTagParamSchema,
+  DeleteTagParamSchema,
   ListTagsParamSchema,
   UpdateTagParamSchema,
   UpdateTagSchema,
@@ -50,15 +56,15 @@ tagsRouter.patch(
 );
 
 // delete tag
-tagsRouter.patch(
+tagsRouter.delete(
   "/:tagId",
   guard({
     authRequired: true,
     isOnboarded: true,
     minRole: "EDITOR",
   }),
-  zValidator("param", ListTagsParamSchema),
-  listAllTags
+  zValidator("param", DeleteTagParamSchema),
+  deleteTag
 );
 
 export default tagsRouter;

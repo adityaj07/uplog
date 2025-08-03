@@ -1,14 +1,8 @@
 import type { HonoContext } from "@/ctx";
 import { getDatabase } from "@/db";
 import { ApiError } from "@/lib/api-error";
-import {
-  createChangelogService,
-  deleteChangelogService,
-} from "@/services/changelog";
-import type {
-  CreateChangelogInput,
-  DeleteChangelogParamInput,
-} from "@uplog/types/changelog/index";
+import { deleteChangelogService } from "@/services/changelog";
+import type { DeleteChangelogParamInput } from "@uplog/types/changelog/index";
 import { StatusCodes } from "@uplog/types/common/index";
 import type { Context } from "hono";
 import type { ContentfulStatusCode } from "hono/utils/http-status";
