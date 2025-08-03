@@ -58,3 +58,7 @@ export const BulkRemoveMembersBodySchema = z.object({
 export const LeaveCompanyParamSchema = z.object({
   companyId: z.string().min(1),
 });
+
+export const TransferOwnershipParamSchema = z.object({
+  memberId: z.string().min(1, "Member ID is required"),
+});

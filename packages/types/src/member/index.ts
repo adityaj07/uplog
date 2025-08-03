@@ -4,6 +4,7 @@ import {
   LeaveCompanyParamSchema,
   ListMembersParamSchema,
   ListMembersQuerySchema,
+  TransferOwnershipParamSchema,
   UpdateMemberParamSchema,
   UpdateMemberRoleInputSchema,
 } from "@uplog/schemas/member/index";
@@ -20,3 +21,6 @@ export type BulkRemoveMembersBodyInput = z.infer<
   typeof BulkRemoveMembersBodySchema
 >;
 export type LeaveCompanyParamInput = z.infer<typeof LeaveCompanyParamSchema>;
+export type TransferOwnershipParamInput = z.infer<
+  typeof TransferOwnershipParamSchema
+>;

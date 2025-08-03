@@ -2,6 +2,7 @@ import {
   bulkRemoveMembers,
   leaveMemberCompany,
   listMembers,
+  transferOwnership,
   updateMember,
 } from "@/controllers/member";
 import { guard } from "@/guards";
@@ -13,6 +14,7 @@ import {
   LeaveCompanyParamSchema,
   ListMembersParamSchema,
   ListMembersQuerySchema,
+  TransferOwnershipParamSchema,
   UpdateMemberParamSchema,
   UpdateMemberRoleInputSchema,
 } from "@uplog/schemas";
@@ -69,6 +71,17 @@ membersRouter.delete(
   }),
   zValidator("param", LeaveCompanyParamSchema),
   leaveMemberCompany
+);
+
+membersRouter.patch(
+  "/:memberId/transfer-ownership",
+  guard({
+    authRequired: true,
+    isOnboarded: true,
+    minRole: "OWNER",
+  }),
+  zValidator("param", TransferOwnershipParamSchema),
+  transferOwnership
 );
 
 export default membersRouter;
